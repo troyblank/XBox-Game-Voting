@@ -1,0 +1,24 @@
+#name .gitignore
+
+# SASS #
+########
+.sass-cache
+*.css.map
+npm-debug.log
+
+# GRUNT #
+#########
+node_modules
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+web/static/scripts
+web/static/styles

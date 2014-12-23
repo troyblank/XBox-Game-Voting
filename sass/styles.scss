@@ -1,0 +1,82 @@
+/* ------ MIXINS ------- */
+@mixin breakpoint($point) {
+    @if $point == TABLET {
+        @media only screen and (max-width: 768px) { @content; }
+    }
+    @else if $point == MOBILE {
+        @media only screen and (max-width: 600px) { @content; }
+    }
+    @else if $point == MOBILE_LANDSCAPE {
+        @media only screen and (max-width: 600px) and (orientation:landscape) { @content; }
+    }
+}
+
+@mixin linear-gradient($topColor, $bottomColor, $defaultColor) {
+    background: -moz-linear-gradient(top, $topColor 0%, $bottomColor 100%) repeat scroll 0 0 $defaultColor;
+    background: -webkit-linear-gradient(top , $topColor 0%, $bottomColor 100%) repeat scroll 0 0 $defaultColor;
+    background: -ms-linear-gradient(top , $topColor 0%, $bottomColor 100%) repeat scroll 0 0 $defaultColor;
+    background: linear-gradient(top , $topColor 0%, $bottomColor 100%) repeat scroll 0 0 $defaultColor;
+}
+
+/* ------ UTILS ------- */
+%clearfix {
+    zoom: 1;
+    &:before{
+        content: "\0020"; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0;
+    }
+    &:after{
+        content: "\0020"; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0; clear: both;
+    }
+}
+
+/* ------ COLORS ------- */
+$white: #fff;
+
+/* ------ FONTS ------- */
+
+%unica { font-family: 'Unica One', cursive; }
+%volkhov { font-family: 'Volkhov', serif; }
+
+/* ------ INHERITANCE ------- */
+@import "lib/normalize.scss";
+@import "partials/svg/icons.data.svg";
+
+
+/* ------ CSS ------- */
+//box size all the things!
+*, *:before, *:after { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+h1 {
+    margin: 0 0 20px 0;
+    font-size: 2rem;
+    text-transform: uppercase;
+    @extend %unica;
+    span {
+        font-size: 0.9rem;
+    }
+}
+
+body {
+    padding: 20px;
+    @extend %volkhov;
+    &:before{
+        content:"desktop"; display: none;
+        @include breakpoint(TABLET) { content:"tablet"; }
+        @include breakpoint(MOBILE) { content:"mobile"; }
+        @include breakpoint(MOBILE_LANDSCAPE) { content:"mobile-landscape"; }
+    }
+}
+
+/* ------ HEADER ------- */
+header {
+    @extend %clearfix;
+
+    h1 {
+        float: left;
+    }
+    .icon-logo_xbox_one {
+        width: 175px;
+        height: 36px;
+        float: right;
+    }
+}
