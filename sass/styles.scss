@@ -31,6 +31,8 @@
 
 /* ------ COLORS ------- */
 $white: #fff;
+$black: #000;
+$red: #f00;
 
 /* ------ FONTS ------- */
 
@@ -79,4 +81,15 @@ header {
         height: 36px;
         float: right;
     }
+}
+
+/* ------ PROMPTS ------- */
+
+.error {
+    min-height: 70px;
+    padding: 30px 0 30px 70px;
+    background-color: $red;
+    background-position: 10px 15px;
+    border: 2px solid $white;
+    color: $white;
 }

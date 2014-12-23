@@ -19,13 +19,16 @@
     <link rel="image_src" type="image/jpeg" href="static/images/icons/facebook.jpg" />
 </head>
 
-<body>
+<body data-ng-app="game-voter">
     <header>
         <h1>Xbox Game Voting <span>with The Nerdery</span></h1>
         <div class="icon-logo_xbox_one"></div>
     </header>
-    <section class="voting">
-        <p>voting section to go there</p>
-    </section>
+    <div data-ng-controller="game-list">
+        <section class="voting"></section>
+    </div>
 </body>
+
+<script src="static/scripts/base.min.js"></script>
+
 </html>
