@@ -1,7 +1,7 @@
 var DataUtil = {
     //This is a helper literal to be used with all end point calls.
 
-    API_KEY: '3c9cc9d5b284b9067f0ce365c34cbf9d',
+    API_KEY: '3c9cc9d5b284b9067f0ce365c34cbf9',
 
     DATA_BASE_URL: 'http://js.november.sierrabravo.net/challenge/',
     GET_GAMES_POINT: 'getGames',

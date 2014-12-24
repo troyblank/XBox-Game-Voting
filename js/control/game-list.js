@@ -3,6 +3,8 @@ var gameList = {
     scope: null,
     http: null,
 
+    LIST_ERROR_MESSAGE: 'Sorry Charlie, unfortunately something went horribly wrong, try again later gater.',
+
     intialize: function($scope, $http) {
         gameList.$scope = $scope;
         gameList.$http = $http;
@@ -14,7 +16,9 @@ var gameList = {
     //---------------------------------------------------------------------------------------------
 
     showListError: function() {
-        $('[data-ng-controller="game-list"]').html('<div class="error icon-skull">Sorry Charlie, unfortunately something went horribly wrong, try again later gater.</div>');
+        $('[data-ng-controller="game-list"]').html(nunjucks.render('error.html', {
+            'message': gameList.LIST_ERROR_MESSAGE
+        }));
     },
 
     //---------------------------------------------------------------------------------------------
@@ -22,7 +26,11 @@ var gameList = {
     //---------------------------------------------------------------------------------------------
     getGameData: function() {
         gameList.$http.jsonp(DataUtil.getGamesEndPoint()).success(function(data, status) {
-            //inject data here
+            if (data) {
+                //do something
+            } else {
+                gameList.showListError();
+            }
         }).error(function(data, status) {
             gameList.showListError();
         });

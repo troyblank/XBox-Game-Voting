@@ -2,11 +2,13 @@
 var base = [
     'js/lib/angular.js',
     'js/lib/jquery-1.11.1.js',
+    'js/lib/nunjucks.js',
     'js/util/BaseUtil.js',
     'js/util/DataUtil.js'
 ]
 
 var voteApp = [
+    'js/view/templates.js',
     'js/control/game-list.js'
 ]
 
