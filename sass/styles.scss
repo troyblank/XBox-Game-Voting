@@ -53,9 +53,13 @@ h1 {
     font-size: 2rem;
     text-transform: uppercase;
     @extend %unica;
-    span {
-        font-size: 0.9rem;
-    }
+}
+
+h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    @extend %unica;
 }
 
 body {
@@ -75,11 +79,31 @@ header {
 
     h1 {
         float: left;
+        @include breakpoint(MOBILE){
+            margin-bottom: 0;
+            float: none;
+            text-align: center;
+        }
     }
+
+    h4 {
+        margin: 10px 0 0 10px;
+        float: left;
+        @include breakpoint(MOBILE){
+            margin: 0;
+            float: none;
+            text-align: center;
+        }
+    }
+
     .icon-logo_xbox_one {
         width: 175px;
         height: 36px;
         float: right;
+        @include breakpoint(MOBILE){
+            margin: 0 auto 5px;
+            float: none;
+        }
     }
 }
 
