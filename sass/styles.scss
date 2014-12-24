@@ -33,6 +33,8 @@
 $white: #fff;
 $black: #000;
 $red: #f00;
+$gray: #e3e3e3;
+$green: #2fb14a;
 
 /* ------ FONTS ------- */
 
@@ -41,8 +43,6 @@ $red: #f00;
 
 /* ------ INHERITANCE ------- */
 @import "lib/normalize.scss";
-@import "partials/svg/icons.data.svg";
-
 
 /* ------ CSS ------- */
 //box size all the things!
@@ -53,6 +53,19 @@ h1 {
     font-size: 2rem;
     text-transform: uppercase;
     @extend %unica;
+}
+
+h2 {
+    padding: 10px;
+    color: $white;
+    background-color: $green; 
+    font-size: 1.5rem;
+    @extend %unica;
+}
+
+h3 {
+    margin: 0;
+    font-size: 1.5rem;
 }
 
 h4 {
@@ -117,3 +130,7 @@ header {
     border: 2px solid $white;
     color: $white;
 }
+
+/* ------ PARTIALS ------- */
+@import "partials/svg/icons.data.svg";
+@import "partials/gameList";

@@ -9,6 +9,7 @@ var base = [
 
 var voteApp = [
     'js/view/templates.js',
+    'js/control/baseUI.js',
     'js/control/game-list.js'
 ]
 

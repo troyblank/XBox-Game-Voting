@@ -1,11 +1,10 @@
 var BaseUtil = {
 
 	getMediaQuerySize: function() {
-		//DOES NOT WORK IN IE 8
-		if (!BaseUI.IS_BROWSER_IE8_ORLESS) {
+		try {
 			var size = window.getComputedStyle(document.body, ':before').getPropertyValue('content').replace(/"/g, '');
 			return size
-		} else {
+		} catch (e) {
 			return 'desktop';
 		}
 	},
