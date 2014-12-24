@@ -35,6 +35,8 @@ $black: #000;
 $red: #f00;
 $gray: #e3e3e3;
 $green: #2fb14a;
+$yellow: #d4e09b;
+$purple: #9a8f97;
 
 /* ------ FONTS ------- */
 
@@ -47,6 +49,11 @@ $green: #2fb14a;
 /* ------ CSS ------- */
 //box size all the things!
 *, *:before, *:after { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  
+    -webkit-tap-highlight-color: transparent;
+}
 
 h1 {
     margin: 0 0 20px 0;
@@ -73,6 +80,14 @@ h4 {
     font-size: 0.9rem;
     text-transform: uppercase;
     @extend %unica;
+}
+
+button {
+    padding: 5px 20px;
+    border-radius: 5px;
+    color: $white;
+    border: 3px solid $yellow;
+    background-color: $green;  
 }
 
 body {

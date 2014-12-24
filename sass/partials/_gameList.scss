@@ -12,19 +12,42 @@
 
         h3 {
             float: left;
+            @include breakpoint(MOBILE){
+                padding-top: 5px;
+                font-size: 1em;
+            }
         }
 
         span {
-            padding-top: 10px;
-            float: right;
+            padding: 12px 0 0 10px;
+            float: left;
             font-size: 0.76em;
+            @include breakpoint(MOBILE){
+                padding-top: 10px;
+                font-size: 0.6em;
+            }
+        }
+
+        button {
+            margin-top: -4px;
+            float: right;
         }
     }
 }
 
-//Hover overlays for desktop only.
+//Hover overlays for non-touch only.
 .hover-active {
     [data-ng-controller="game-list"]{
+        .game {
+            span {
+                float: right;
+            }
+
+            button {
+                display: none;
+            }
+        }
+
         .want-games {
             &.active {
                 .game:hover:after {

@@ -13,7 +13,7 @@ var baseUI = {
     },
 
     addHoverForDesktop: function() {
-        if (BaseUtil.getMediaQuerySize() == 'desktop') {
+        if (!BaseUtil.IS_TOUCH_DEVICE) {
             $('body').addClass('hover-active');
         }
     }

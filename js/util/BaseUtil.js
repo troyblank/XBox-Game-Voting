@@ -1,5 +1,7 @@
 var BaseUtil = {
 
+	IS_TOUCH_DEVICE: !!('ontouchstart' in window),
+
 	getMediaQuerySize: function() {
 		try {
 			var size = window.getComputedStyle(document.body, ':before').getPropertyValue('content').replace(/"/g, '');
