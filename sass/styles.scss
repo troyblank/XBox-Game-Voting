@@ -34,6 +34,7 @@ $white: #fff;
 $black: #000;
 $red: #f00;
 $gray: #e3e3e3;
+$dark-gray: #736f72;
 $green: #2fb14a;
 $yellow: #d4e09b;
 $purple: #9a8f97;
@@ -45,6 +46,9 @@ $purple: #9a8f97;
 
 /* ------ INHERITANCE ------- */
 @import "lib/normalize.scss";
+@import "partials/svg/icons.data.svg";
+@import "partials/tiles/form";
+@import "partials/tiles/typography";
 
 /* ------ CSS ------- */
 //box size all the things!
@@ -53,41 +57,6 @@ $purple: #9a8f97;
 * {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  
     -webkit-tap-highlight-color: transparent;
-}
-
-h1 {
-    margin: 0 0 20px 0;
-    font-size: 2rem;
-    text-transform: uppercase;
-    @extend %unica;
-}
-
-h2 {
-    padding: 10px;
-    color: $white;
-    background-color: $green; 
-    font-size: 1.5rem;
-    @extend %unica;
-}
-
-h3 {
-    margin: 0;
-    font-size: 1.5rem;
-}
-
-h4 {
-    margin: 0;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    @extend %unica;
-}
-
-button {
-    padding: 5px 20px;
-    border-radius: 5px;
-    color: $white;
-    border: 3px solid $yellow;
-    background-color: $green;  
 }
 
 body {
@@ -115,7 +84,7 @@ header {
     }
 
     h4 {
-        margin: 10px 0 0 10px;
+        margin: 11px 0 0 10px;
         float: left;
         @include breakpoint(MOBILE){
             margin: 0;
@@ -146,6 +115,5 @@ header {
     color: $white;
 }
 
-/* ------ PARTIALS ------- */
-@import "partials/svg/icons.data.svg";
+/* ------ APP PARTIALS ------- */
 @import "partials/gameList";

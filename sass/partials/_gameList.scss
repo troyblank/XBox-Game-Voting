@@ -1,5 +1,5 @@
 [data-ng-controller="game-list"]{
-    .game {
+    .game, .add-game {
         height: 50px;
         padding: 10px;
         background: $gray;
@@ -28,12 +28,32 @@
             }
         }
 
-        button {
-            margin-top: -4px;
-            float: right;
+        input {
+            width: 80%;
+        }
+
+        &.add-game {
+            height: 80px;
+            p {
+                display: block;
+            }
+
+            input {
+                width: 80%; 
+                @include breakpoint(MOBILE){
+                    width: 50%;
+                }
+            }
+
+            button {
+                margin-top: -4px;
+                float: right;
+            }
         }
     }
 }
+
+
 
 //Hover overlays for non-touch only.
 .hover-active {

@@ -1,0 +1,32 @@
+h1 {
+    margin: 0 0 20px 0;
+    font-size: 2rem;
+    text-transform: uppercase;
+    @extend %unica;
+}
+
+h2 {
+    padding: 10px;
+    color: $white;
+    background-color: $green; 
+    font-size: 1.5rem;
+    @extend %unica;
+}
+
+h3 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    @extend %unica;
+}
+
+p {
+    margin: 0 0 6px 0;
+    font-size: 0.8rem;
+    color: $dark-gray;
+}
