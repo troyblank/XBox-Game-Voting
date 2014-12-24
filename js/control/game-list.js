@@ -65,7 +65,7 @@ var gameList = {
         currentTitles = [];
         var i = data.length - 1;
         while (i >= 0) {
-            currentTitles.push(data[i].title);
+            currentTitles.push(data[i].title.toLowerCase());
             i--;
         }
 

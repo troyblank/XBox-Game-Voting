@@ -14,6 +14,9 @@ var addGame = {
     $scope: null,
     $http: null,
 
+    INVALID_INPUT_MESSAGE: 'Oh snap, that title is not really a title',
+    TITLE_USED_ERROR_MESSAGE: 'Hey! that Game has already been accounted for',
+
     intialize: function($scope, $http) {
         addGame.$scope = $scope;
         addGame.$http = $http;
@@ -22,27 +25,47 @@ var addGame = {
     },
 
     //---------------------------------------------------------------------------------------------
+    // DISPLAY
+    //---------------------------------------------------------------------------------------------
+
+    showError: function(message) {
+        addGame.$scope.error = true;
+        addGame.$scope.errorMessage = message;
+    },
+
+    //---------------------------------------------------------------------------------------------
     // FORM
     //---------------------------------------------------------------------------------------------
     submitForm: function() {
         var title = addGame.$scope.addGameData ? addGame.$scope.addGameData.title : null;
-        if (addGame.isTitleGood(title)) {
+        var titleCheck = addGame.isTitleGood(title);
+        if (titleCheck.status) {
             addGame.addGame(title);
+        } else {
+            addGame.showError(titleCheck.message);
         }
     },
 
     isTitleGood: function(title) {
         if (BaseUtil.contentTest(title)) {
             if (addGame.isTitleUsed(title)) {
-                return false;
+                return {
+                    'status': false,
+                    'message': addGame.TITLE_USED_ERROR_MESSAGE
+                };
             }
-            return true;
+            return {
+                'status': true
+            };
         }
-        return false;
+        return {
+            'status': false,
+            'message': addGame.INVALID_INPUT_MESSAGE
+        };
     },
 
     isTitleUsed: function(title) {
-        return gameList.currentTitles.indexOf(title) >= 0;
+        return gameList.currentTitles.indexOf(title.toLowerCase()) >= 0;
     },
 
     showSuccess: function() {

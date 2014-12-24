@@ -47,14 +47,14 @@ describe('Add Game', function() {
 
     //---------------------------------------------------------------------------------------------
     it('should be able to submit a good title.', function() {
-        expect(addGame.isTitleGood(title)).toBe(true);
-        expect(addGame.isTitleGood('Final Fantasy')).toBe(true);
-        expect(addGame.isTitleGood('')).toBe(false);
+        expect(addGame.isTitleGood(title).status).toBe(true);
+        expect(addGame.isTitleGood('Final Fantasy').status).toBe(true);
+        expect(addGame.isTitleGood('').status).toBe(false);
     });
 
     //---------------------------------------------------------------------------------------------
     it('should be able to see if a title is used.', function() {
-        gameList.currentTitles = ['Mega Man', 'Final Fantasy']
+        gameList.currentTitles = ['mega man', 'final fantasy']
         expect(addGame.isTitleUsed('Mega Man')).toBe(true);
         expect(addGame.isTitleUsed('Final Fantasy')).toBe(true);
         expect(addGame.isTitleUsed('Bubble Bobble')).toBe(false);
