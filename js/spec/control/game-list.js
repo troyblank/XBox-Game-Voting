@@ -4,6 +4,18 @@
 
 describe('Game List', function() {
 
+    var data = [{
+        "id": 128955,
+        "status": "wantit",
+        "title": "Mega Man",
+        "votes": 1
+    }, {
+        "id": 128956,
+        "status": "gotit",
+        "title": "Final Fantasy",
+        "votes": 5
+    }];
+
     beforeEach(module("game-voter"));
 
     beforeEach(inject(function($injector) {
@@ -14,12 +26,7 @@ describe('Game List', function() {
         //Set up the mock http service responses
         $httpBackend = $injector.get('$httpBackend');
 
-        var authRequestHandler = $httpBackend.when('JSONP', DataUtil.getGamesEndPoint()).respond([{
-            "id": 128955,
-            "status": "wantit",
-            "title": "Mega man",
-            "votes": 1
-        }]);
+        var authRequestHandler = $httpBackend.when('JSONP', DataUtil.getGamesEndPoint()).respond(data);
 
         createController = function() {
             return $controller(gameList.intialize, {
@@ -37,9 +44,21 @@ describe('Game List', function() {
 
     //---------------------------------------------------------------------------------------------
     it('should be able to get game list data.', function() {
+        spyOn(gameList, 'parseGameData');
+
         $httpBackend.expectJSONP(DataUtil.getGamesEndPoint());
         var controller = createController();
         $httpBackend.flush();
+
+        expect(gameList.parseGameData).toHaveBeenCalled();
+    });
+
+    //---------------------------------------------------------------------------------------------
+    it('should be able to spit a games into want and got lists.', function() {
+        var splitLists = gameList.splitWantAndGotGames(data);
+
+        expect(splitLists.wantList.length).toBeGreaterThan(0);
+        expect(splitLists.gotList.length).toBeGreaterThan(0);
     });
 
 });
