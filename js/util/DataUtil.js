@@ -5,12 +5,25 @@ var DataUtil = {
 
     DATA_BASE_URL: 'http://js.november.sierrabravo.net/challenge/',
     GET_GAMES_POINT: 'getGames',
+    ADD_GAME_POINT: 'addGame',
 
-    getQueryParams: function() {
-        return '?apiKey=' + encodeURIComponent(DataUtil.API_KEY) + '&callback=JSON_CALLBACK';
+    getQueryParams: function(extraParams) {
+        var query = '?apiKey=' + encodeURIComponent(DataUtil.API_KEY) + '&callback=JSON_CALLBACK';
+        if (extraParams) {
+            for (var prop in extraParams) {
+                query += '&' + prop + '=' + extraParams[prop];
+            }
+        }
+        return query;
     },
 
     getGamesEndPoint: function() {
         return DataUtil.DATA_BASE_URL + DataUtil.GET_GAMES_POINT + DataUtil.getQueryParams();
+    },
+
+    getAddGameEndPoint: function(title) {
+        return DataUtil.DATA_BASE_URL + DataUtil.ADD_GAME_POINT + DataUtil.getQueryParams({
+            'title': title
+        });
     }
 }

@@ -2,6 +2,10 @@
 // gameList
 //
 // this controls the displaying of game lists
+//
+// USES:
+// util/AngularApps
+// util/DataUtil
 //-------------------------------------------------------------------------------------------------
 
 var gameList = {
@@ -22,7 +26,6 @@ var gameList = {
     //---------------------------------------------------------------------------------------------
     // DISPLAY
     //---------------------------------------------------------------------------------------------
-
     showListError: function() {
         $('[data-ng-controller="game-list"]').html(nunjucks.render('error.html', {
             'message': gameList.LIST_ERROR_MESSAGE
@@ -72,5 +75,4 @@ var gameList = {
     }
 }
 
-var GameVoter = angular.module('game-voter', []);
 GameVoter.controller('game-list', ['$scope', '$http', gameList.intialize]);

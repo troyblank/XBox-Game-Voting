@@ -1,5 +1,5 @@
 [data-ng-controller="game-list"]{
-    .game, .add-game {
+    .game {
         height: 50px;
         padding: 10px;
         background: $gray;
@@ -27,47 +27,12 @@
                 font-size: 0.6em;
             }
         }
-
-        input {
-            width: 80%;
-        }
-
-        &.add-game {
-            height: 80px;
-            p {
-                display: block;
-            }
-
-            input {
-                width: 80%; 
-                @include breakpoint(MOBILE){
-                    width: 50%;
-                }
-            }
-
-            button {
-                margin-top: -4px;
-                float: right;
-            }
-        }
     }
 }
-
-
 
 //Hover overlays for non-touch only.
 .hover-active {
     [data-ng-controller="game-list"]{
-        .game {
-            span {
-                float: right;
-            }
-
-            button {
-                display: none;
-            }
-        }
-
         .want-games {
             &.active {
                 .game:hover:after {
@@ -92,6 +57,14 @@
             .game {
                 position: relative;
                 cursor: pointer;
+
+                span {
+                    float: right;
+                }
+
+                button {
+                    display: none;
+                }
             }
         }
     }

@@ -1,0 +1,23 @@
+.add-game {
+
+    margin: 25px 0 0 0;
+
+    .game {
+        height: 80px;
+        p {
+            display: block;
+        }
+
+        input {
+            width: 80%; 
+            @include breakpoint(MOBILE){
+                width: 50%;
+            }
+        }
+
+        button {
+            margin-top: -4px;
+            float: right;
+        }
+    }
+}

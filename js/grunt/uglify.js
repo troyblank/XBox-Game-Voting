@@ -8,9 +8,11 @@ var base = [
 ]
 
 var voteApp = [
+    'js/util/AngularApps.js',
     'js/view/templates.js',
     'js/control/baseUI.js',
-    'js/control/game-list.js'
+    'js/control/game-list.js',
+    'js/control/add-game.js'
 ]
 
 voteApp = base.concat(voteApp);

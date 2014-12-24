@@ -4,8 +4,7 @@
 // this controls general ui duties.
 //
 // USES:
-// BaseUtil
-//
+// util/BaseUtil
 //-------------------------------------------------------------------------------------------------
 var baseUI = {
     initialize: function() {
@@ -18,6 +17,5 @@ var baseUI = {
         }
     }
 }
-
 
 $(document).ready(baseUI.initialize);

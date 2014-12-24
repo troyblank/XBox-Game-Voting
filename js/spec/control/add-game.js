@@ -1,20 +1,11 @@
 //#################################################################################################
-// Game List
+// Add Game
 //################################################################################################
 
-describe('Game List', function() {
+describe('Add Game', function() {
 
-    var data = [{
-        "id": 128955,
-        "status": "wantit",
-        "title": "Mega Man",
-        "votes": 1
-    }, {
-        "id": 128956,
-        "status": "gotit",
-        "title": "Final Fantasy",
-        "votes": 5
-    }];
+    var data = true;
+    var title = 'Mega Man';
 
     beforeEach(module("game-voter"));
 
@@ -26,10 +17,10 @@ describe('Game List', function() {
         //Set up the mock http service responses
         $httpBackend = $injector.get('$httpBackend');
 
-        var authRequestHandler = $httpBackend.when('JSONP', DataUtil.getGamesEndPoint()).respond(data);
+        var authRequestHandler = $httpBackend.when('JSONP', DataUtil.getAddGameEndPoint(title)).respond(data);
 
         createController = function() {
-            return $controller(gameList.intialize, {
+            return $controller(addGame.intialize, {
                 '$scope': $rootScope
             });
         };
@@ -43,22 +34,22 @@ describe('Game List', function() {
     });
 
     //---------------------------------------------------------------------------------------------
-    it('should be able to get game list data.', function() {
-        spyOn(gameList, 'parseGameData');
+    it('should be able to add game.', function() {
+        spyOn(addGame, 'showSuccess');
 
-        $httpBackend.expectJSONP(DataUtil.getGamesEndPoint());
-        controller = createController();
+        $httpBackend.expectJSONP(DataUtil.getAddGameEndPoint(title));
+        createController();
+        addGame.addGame(title);
         $httpBackend.flush();
 
-        expect(gameList.parseGameData).toHaveBeenCalled();
+        expect(addGame.showSuccess).toHaveBeenCalled();
     });
 
     //---------------------------------------------------------------------------------------------
-    it('should be able to spit a games into want and got lists.', function() {
-        var splitLists = gameList.splitWantAndGotGames(data);
-
-        expect(splitLists.wantList.length).toBeGreaterThan(0);
-        expect(splitLists.gotList.length).toBeGreaterThan(0);
+    it('should be able to submit a good title.', function() {
+        expect(addGame.isTitleGood(title)).toBe(true);
+        expect(addGame.isTitleGood('Final Fantasy')).toBe(true);
+        expect(addGame.isTitleGood('')).toBe(false);
     });
 
 });
