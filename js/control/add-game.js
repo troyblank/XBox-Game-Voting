@@ -7,6 +7,7 @@
 // util/AngularApps
 // util/BaseUtil
 // util/DataUtil
+// control/gameList
 //-------------------------------------------------------------------------------------------------
 
 var addGame = {
@@ -26,16 +27,22 @@ var addGame = {
     submitForm: function() {
         var title = addGame.$scope.addGameData ? addGame.$scope.addGameData.title : null;
         if (addGame.isTitleGood(title)) {
-            addGame.addGame(title)
+            addGame.addGame(title);
         }
     },
 
     isTitleGood: function(title) {
         if (BaseUtil.contentTest(title)) {
-            //need to test for duplicates here.
+            if (addGame.isTitleUsed(title)) {
+                return false;
+            }
             return true;
         }
         return false;
+    },
+
+    isTitleUsed: function(title) {
+        return gameList.currentTitles.indexOf(title) >= 0;
     },
 
     showSuccess: function() {
@@ -46,7 +53,6 @@ var addGame = {
     // DATA
     //---------------------------------------------------------------------------------------------
     addGame: function(title) {
-        console.log('here')
         addGame.$http.jsonp(DataUtil.getAddGameEndPoint(title)).success(function(data, status) {
             addGame.showSuccess();
         }).error(function(data, status) {

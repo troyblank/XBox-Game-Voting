@@ -52,4 +52,12 @@ describe('Add Game', function() {
         expect(addGame.isTitleGood('')).toBe(false);
     });
 
+    //---------------------------------------------------------------------------------------------
+    it('should be able to see if a title is used.', function() {
+        gameList.currentTitles = ['Mega Man', 'Final Fantasy']
+        expect(addGame.isTitleUsed('Mega Man')).toBe(true);
+        expect(addGame.isTitleUsed('Final Fantasy')).toBe(true);
+        expect(addGame.isTitleUsed('Bubble Bobble')).toBe(false);
+    });
+
 });

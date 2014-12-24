@@ -50,7 +50,7 @@ var gameList = {
     },
 
     parseGameData: function(data) {
-        gameList.currentTitles = getCurrentTitles(data);
+        gameList.currentTitles = gameList.getCurrentTitles(data);
         var gameLists = gameList.splitWantAndGotGames(data);
 
         if (gameLists.wantList.length > 0) {
