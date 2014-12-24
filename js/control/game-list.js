@@ -13,6 +13,8 @@ var gameList = {
     $scope: null,
     $http: null,
 
+    currentTitles: [],
+
     WANT_STATUS: 'wantit',
 
     LIST_ERROR_MESSAGE: 'Sorry Charlie, unfortunately something went horribly wrong, try again later gater.',
@@ -48,6 +50,7 @@ var gameList = {
     },
 
     parseGameData: function(data) {
+        gameList.currentTitles = getCurrentTitles(data);
         var gameLists = gameList.splitWantAndGotGames(data);
 
         if (gameLists.wantList.length > 0) {
@@ -56,6 +59,17 @@ var gameList = {
         if (gameLists.gotList.length > 0) {
             gameList.$scope.gotGames = gameLists.gotList;
         }
+    },
+
+    getCurrentTitles: function(data) {
+        currentTitles = [];
+        var i = data.length - 1;
+        while (i >= 0) {
+            currentTitles.push(data[i].title);
+            i--;
+        }
+
+        return currentTitles;
     },
 
     splitWantAndGotGames: function(data) {

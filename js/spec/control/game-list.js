@@ -61,4 +61,11 @@ describe('Game List', function() {
         expect(splitLists.gotList.length).toBeGreaterThan(0);
     });
 
+    //---------------------------------------------------------------------------------------------
+    it('should be able to store current titles.', function() {
+        var currentTitles = gameList.getCurrentTitles(data);
+
+        expect(currentTitles.length).toBe(2);
+    });
+
 });
