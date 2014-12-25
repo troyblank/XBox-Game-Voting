@@ -29,9 +29,8 @@ var gameList = {
     // DISPLAY
     //---------------------------------------------------------------------------------------------
     showListError: function() {
-        $('[data-ng-controller="game-list"]').html(nunjucks.render('error.html', {
-            'message': gameList.LIST_ERROR_MESSAGE
-        }));
+        gameList.$scope.error = true;
+        gameList.$scope.errorMessage = gameList.LIST_ERROR_MESSAGE
     },
 
     //---------------------------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 {
 	"name": "xboxGameVoting",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"main": "web/server.js",
 	"scripts": {
 		"start": "node web/server.js"
@@ -17,7 +17,7 @@
 		"grunt-contrib-clean": "0.6.0",
 		"grunt-contrib-copy": "0.7.0",
 		"grunt-contrib-jasmine": "0.8.1",
-		"grunt-nunjucks": "0.1.4",
+		"grunt-angular-templates": "0.5.7",
 		"matchdep": "0.3.0",
 		"colors": "1.0.3",
 		"express": "4.9.6"

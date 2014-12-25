@@ -14,9 +14,9 @@ module.exports = function(grunt) {
                 files: ['svg/**/*.svg'],
                 tasks: ['icon', 'notify:sass']
             },
-            nunjucks: {
-                files: ['web/templates/**/*.html'],
-                tasks: ['nunjucks']
+            ngtemplates: {
+                files: ['templates/**/*.html'],
+                tasks: ['ngtemplates']
             },
             livereload: {
                 options: {
@@ -110,18 +110,20 @@ module.exports = function(grunt) {
                 }
             }
         },
-        nunjucks: {
+        ngtemplates: {
             precompile: {
-                baseDir: 'web/templates/',
-                src: 'web/templates/**/*.html',
-                dest: 'js/view/templates.js'
+                options: {
+                    module: "game-voter"
+                },
+                src: "templates/**/*.html",
+                dest: "js/view/templates.js"
             }
         }
     });
 
     grunt.registerTask('default', [
         'icon',
-        'nunjucks',
+        'ngtemplates',
         'sass:dev',
         'uglify:dev',
         'watch'
@@ -140,7 +142,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('deploy', [
         'icon',
-        'nunjucks',
+        'ngtemplates',
         'sass:deploy',
         'uglify:deploy'
     ]);
