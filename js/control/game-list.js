@@ -28,7 +28,6 @@ var gameList = {
     },
 
     addListeners: function() {
-        console.log('added')
         gameList.$scope.$on('gameAdded', gameList.refreshDisplay);
     },
 
@@ -41,7 +40,6 @@ var gameList = {
     },
 
     refreshDisplay: function() {
-        console.log('refreshed')
         gameList.getGameData();
     },
 
