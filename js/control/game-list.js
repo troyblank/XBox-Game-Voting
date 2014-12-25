@@ -68,6 +68,8 @@ var gameList = {
         if (gameLists.gotList.length > 0) {
             gameList.$scope.gotGames = gameLists.gotList;
         }
+
+        gameList.$scope.gamesDisplayed = true;
     },
 
     getCurrentTitles: function(data) {

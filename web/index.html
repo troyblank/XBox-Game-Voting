@@ -30,7 +30,7 @@
             <h2>Wanted Games</h2>
             <div class="game" data-ng-repeat="game in wantGames" data-ng-include="'templates/wantGame.html'"></div>
         </section>
-        <section class="add-game" data-ng-controller="add-game" data-ng-show="wantGames">
+        <section class="add-game" data-ng-controller="add-game" data-ng-show="gamesDisplayed">
             <div class="game">
                 <form data-ng-submit="submitForm()">
                     <div class="success" data-ng-show="success" >{{ successMessage }}</div>
