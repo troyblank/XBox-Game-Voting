@@ -15,8 +15,10 @@ var addGame = {
     $rootScope: null,
     $http: null,
 
-    INVALID_INPUT_MESSAGE: 'Oh snap, that title is not really a title',
-    TITLE_USED_ERROR_MESSAGE: 'Hey! that Game has already been accounted for',
+    SUCCESS_MESSAGE: 'Your suggestion was added to the voting list.',
+    INVALID_INPUT_MESSAGE: 'Oh snap, that title is not really a title.',
+    TITLE_USED_ERROR_MESSAGE: 'Hey! that Game has already been accounted for.',
+    SERVICE_ERROR_MESSAGE: 'Sorry Charlie, unfortunately something went horribly wrong, try again later gater.',
 
     intialize: function($scope, $rootScope, $http) {
         addGame.$scope = $scope;
@@ -24,12 +26,12 @@ var addGame = {
         addGame.$http = $http;
 
         addGame.$scope.submitForm = addGame.submitForm;
+        addGame.enableForm();
     },
 
     //---------------------------------------------------------------------------------------------
     // DISPLAY
     //---------------------------------------------------------------------------------------------
-
     showError: function(message) {
         addGame.$scope.error = true;
         addGame.$scope.errorMessage = message;
@@ -70,8 +72,20 @@ var addGame = {
         return gameList.currentTitles.indexOf(title.toLowerCase()) >= 0;
     },
 
+    enableForm: function() {
+        $('.add-game input').removeAttr('disabled');
+        $('.add-game button').removeAttr('disabled');
+    },
+
+    disableForm: function() {
+        $('.add-game input').attr('disabled', 'true');
+        $('.add-game button').attr('disabled', 'true');
+    },
+
     showSuccess: function() {
         addGame.$scope.error = false;
+        addGame.$scope.success = true;
+        addGame.$scope.successMessage = addGame.SUCCESS_MESSAGE;
         addGame.$rootScope.$broadcast('gameAdded');
     },
 
@@ -80,9 +94,10 @@ var addGame = {
     //---------------------------------------------------------------------------------------------
     addGame: function(title) {
         addGame.$http.jsonp(DataUtil.getAddGameEndPoint(title)).success(function(data, status) {
+            addGame.disableForm();
             addGame.showSuccess();
         }).error(function(data, status) {
-
+            addGame.showError(addGame.SERVICE_ERROR_MESSAGE);
         });
     }
 }

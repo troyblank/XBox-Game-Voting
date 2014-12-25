@@ -33,6 +33,7 @@
         <section class="add-game" data-ng-controller="add-game" data-ng-show="wantGames">
             <div class="game">
                 <form data-ng-submit="submitForm()">
+                    <div class="success" data-ng-show="success" >{{ successMessage }}</div>
                     <div class="error" data-ng-show="error">{{ errorMessage }}</div>
                     <p>Suggest a game.</p>
                     <input type="text" name="title" placeholder="Title" data-ng-model="addGameData.title" />

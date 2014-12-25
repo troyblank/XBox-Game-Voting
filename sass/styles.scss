@@ -49,6 +49,7 @@ $purple: #9a8f97;
 @import "partials/svg/icons.data.svg";
 @import "partials/tiles/form";
 @import "partials/tiles/typography";
+@import "partials/tiles/prompts";
 
 /* ------ CSS ------- */
 //box size all the things!
@@ -102,20 +103,6 @@ header {
             float: none;
         }
     }
-}
-
-/* ------ PROMPTS ------- */
-
-.error {
-    min-height: 50px;
-    padding: 15px 0 10px 40px;
-    margin-bottom: 10px;
-    background-color: $red;
-    background-size: 20px auto;
-    background-position: 10px 15px;
-    border: 2px solid $white;
-    color: $white;
-    @extend .icon-skull;
 }
 
 /* ------ APP PARTIALS ------- */

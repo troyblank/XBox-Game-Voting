@@ -8,5 +8,10 @@ button {
     border-radius: 5px;
     color: $white;
     border: 3px solid $yellow;
-    background-color: $green;  
+    background-color: $green;
+
+    &:disabled {
+        border: 3px solid $gray;
+        background-color: $purple;
+    }
 }
