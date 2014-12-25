@@ -22,7 +22,14 @@ var gameList = {
     intialize: function($scope, $http) {
         gameList.$scope = $scope;
         gameList.$http = $http;
+
         gameList.getGameData();
+        gameList.addListeners();
+    },
+
+    addListeners: function() {
+        console.log('added')
+        gameList.$scope.$on('gameAdded', gameList.refreshDisplay);
     },
 
     //---------------------------------------------------------------------------------------------
@@ -31,6 +38,11 @@ var gameList = {
     showListError: function() {
         gameList.$scope.error = true;
         gameList.$scope.errorMessage = gameList.LIST_ERROR_MESSAGE
+    },
+
+    refreshDisplay: function() {
+        console.log('refreshed')
+        gameList.getGameData();
     },
 
     //---------------------------------------------------------------------------------------------

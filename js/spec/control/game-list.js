@@ -4,6 +4,8 @@
 
 describe('Game List', function() {
 
+    var $rootScope = null;
+
     var data = [{
         "id": 128955,
         "status": "wantit",
@@ -19,7 +21,7 @@ describe('Game List', function() {
     beforeEach(module("game-voter"));
 
     beforeEach(inject(function($injector) {
-        var $rootScope = $injector.get('$rootScope');
+        $rootScope = $injector.get('$rootScope');
         var $compile = $injector.get('$compile');
         var $controller = $injector.get('$controller');
 
@@ -66,6 +68,19 @@ describe('Game List', function() {
         var currentTitles = gameList.getCurrentTitles(data);
 
         expect(currentTitles.length).toBe(2);
+    });
+
+    //---------------------------------------------------------------------------------------------
+    it('should refresh display when games are added.', function() {
+        spyOn(gameList, 'refreshDisplay');
+
+        $httpBackend.expectJSONP(DataUtil.getGamesEndPoint());
+        controller = createController();
+        $httpBackend.flush();
+
+        $rootScope.$broadcast('gameAdded');
+
+        expect(gameList.refreshDisplay).toHaveBeenCalled();
     });
 
 });

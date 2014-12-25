@@ -12,13 +12,15 @@
 
 var addGame = {
     $scope: null,
+    $rootScope: null,
     $http: null,
 
     INVALID_INPUT_MESSAGE: 'Oh snap, that title is not really a title',
     TITLE_USED_ERROR_MESSAGE: 'Hey! that Game has already been accounted for',
 
-    intialize: function($scope, $http) {
+    intialize: function($scope, $rootScope, $http) {
         addGame.$scope = $scope;
+        addGame.$rootScope = $rootScope;
         addGame.$http = $http;
 
         addGame.$scope.submitForm = addGame.submitForm;
@@ -69,7 +71,8 @@ var addGame = {
     },
 
     showSuccess: function() {
-
+        addGame.$scope.error = false;
+        addGame.$rootScope.$broadcast('gameAdded');
     },
 
     //---------------------------------------------------------------------------------------------
@@ -84,4 +87,4 @@ var addGame = {
     }
 }
 
-GameVoter.controller('add-game', ['$scope', '$http', addGame.intialize]);
+GameVoter.controller('add-game', ['$scope', '$rootScope', '$http', addGame.intialize]);
