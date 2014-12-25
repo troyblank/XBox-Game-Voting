@@ -10,6 +10,7 @@ var voteApp = [
     'js/util/AngularApps.js',
     'js/view/templates.js',
     'js/control/baseUI.js',
+    'js/control/notification-area.js',
     'js/control/game-list.js',
     'js/control/add-game.js'
 ]

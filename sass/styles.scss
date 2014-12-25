@@ -60,6 +60,9 @@ $purple: #9a8f97;
     -webkit-tap-highlight-color: transparent;
 }
 
+.left { float: left; }
+.right { float: right; }
+
 body {
     padding: 20px;
     @extend %volkhov;
@@ -71,40 +74,8 @@ body {
     }
 }
 
-/* ------ HEADER ------- */
-header {
-    @extend %clearfix;
-
-    h1 {
-        float: left;
-        @include breakpoint(MOBILE){
-            margin-bottom: 0;
-            float: none;
-            text-align: center;
-        }
-    }
-
-    h4 {
-        margin: 11px 0 0 10px;
-        float: left;
-        @include breakpoint(MOBILE){
-            margin: 0;
-            float: none;
-            text-align: center;
-        }
-    }
-
-    .icon-logo_xbox_one {
-        width: 175px;
-        height: 36px;
-        float: right;
-        @include breakpoint(MOBILE){
-            margin: 0 auto 5px;
-            float: none;
-        }
-    }
-}
-
 /* ------ APP PARTIALS ------- */
+@import "partials/header";
+@import "partials/notificationArea";
 @import "partials/gameList";
 @import "partials/addGame";

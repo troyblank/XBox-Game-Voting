@@ -1,0 +1,14 @@
+section[data-ng-controller="notification-area"]{
+    .notification {
+        font-size: 0.85em;
+        .left { padding: 0 10px 10px 0; }
+        @extend %clearfix;
+
+        @include breakpoint(TABLET){
+            .left, .right {
+                display: block;
+                float: none;
+            }
+        }
+    }
+}

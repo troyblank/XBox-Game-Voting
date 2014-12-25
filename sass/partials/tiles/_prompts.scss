@@ -1,6 +1,6 @@
-.error, .success {
+.prompt  {
     min-height: 50px;
-    padding: 15px 0 10px 40px;
+    padding: 15px 15px 10px 40px;
     margin-bottom: 10px;
     background-size: 20px auto;
     background-position: 10px 15px;
@@ -11,9 +11,17 @@
 .success {
     background-color: $green;
     @extend .icon-check;
+    @extend .prompt;
+}
+
+.notification {
+    background-color: $dark-gray;
+    @extend .icon-light_bulb;
+    @extend .prompt;
 }
 
 .error {
     background-color: $red;
     @extend .icon-skull;
+    @extend .prompt;
 }
