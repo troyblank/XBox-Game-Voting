@@ -107,12 +107,15 @@ header {
 /* ------ PROMPTS ------- */
 
 .error {
-    min-height: 70px;
-    padding: 30px 0 30px 70px;
+    min-height: 50px;
+    padding: 15px 0 10px 40px;
+    margin-bottom: 10px;
     background-color: $red;
+    background-size: 20px auto;
     background-position: 10px 15px;
     border: 2px solid $white;
     color: $white;
+    @extend .icon-skull;
 }
 
 /* ------ APP PARTIALS ------- */
