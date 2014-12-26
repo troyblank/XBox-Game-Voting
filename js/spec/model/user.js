@@ -4,6 +4,10 @@
 
 describe('User', function() {
 
+    beforeEach(function() {
+        localStorage.clear();
+    });
+
     //---------------------------------------------------------------------------------------------
     it('should determine if user can vote.', function() {
         timeTracker.isWeekDay = true;
