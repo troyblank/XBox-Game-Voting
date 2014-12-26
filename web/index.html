@@ -34,7 +34,7 @@
         <div class="error" data-ng-show="error">{{ errorMessage }}</div>
         <section class="want-games" data-ng-show="wantGames">
             <h2>Wanted Games</h2>
-            <div class="game" data-ng-repeat="game in wantGames" data-ng-include="'templates/wantGame.html'"></div>
+            <div class="game" data-ng-repeat="game in wantGames" data-ng-include="'templates/wantGame.html'" ng-click="onClick($event, game)"></div>
         </section>
         <section class="add-game" data-ng-controller="add-game" data-ng-show="gamesDisplayed">
             <div class="game">

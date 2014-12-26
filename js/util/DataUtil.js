@@ -6,6 +6,7 @@ var DataUtil = {
     DATA_BASE_URL: 'http://js.november.sierrabravo.net/challenge/',
     GET_GAMES_POINT: 'getGames',
     ADD_GAME_POINT: 'addGame',
+    ADD_VOTE_POINT: 'addVote',
 
     getQueryParams: function(extraParams) {
         var query = '?apiKey=' + encodeURIComponent(DataUtil.API_KEY) + '&callback=JSON_CALLBACK';
@@ -24,6 +25,12 @@ var DataUtil = {
     getAddGameEndPoint: function(title) {
         return DataUtil.DATA_BASE_URL + DataUtil.ADD_GAME_POINT + DataUtil.getQueryParams({
             'title': title
+        });
+    },
+
+    getVoteForGameEndPoint: function(id) {
+        return DataUtil.DATA_BASE_URL + DataUtil.ADD_VOTE_POINT + DataUtil.getQueryParams({
+            'id': id
         });
     }
 }

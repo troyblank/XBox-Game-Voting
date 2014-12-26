@@ -18,7 +18,10 @@ describe('Game List', function() {
         "votes": 5
     }];
 
+    var voteGameID = 128955;
+
     beforeEach(function() {
+        localStorage.clear();
         setFixtures('<section class="want-games"></section>');
     })
 
@@ -32,7 +35,8 @@ describe('Game List', function() {
         //Set up the mock http service responses
         $httpBackend = $injector.get('$httpBackend');
 
-        var authRequestHandler = $httpBackend.when('JSONP', DataUtil.getGamesEndPoint()).respond(data);
+        $httpBackend.when('JSONP', DataUtil.getGamesEndPoint()).respond(data);
+        $httpBackend.when('JSONP', DataUtil.getVoteForGameEndPoint(voteGameID)).respond(true);
 
         createController = function() {
             return $controller(gameList.intialize, {
@@ -97,6 +101,22 @@ describe('Game List', function() {
         gameList.toggleVoteDisplay();
         expect($('.want-games')).not.toHaveClass('active');
 
+    });
+
+    //---------------------------------------------------------------------------------------------
+    it('should be able to vote for a game.', function() {
+        spyOn(gameList, 'setVotedForDisplay');
+        var game = {
+            id: voteGameID
+        }
+
+        $httpBackend.expectJSONP(DataUtil.getGamesEndPoint());
+        $httpBackend.expectJSONP(DataUtil.getVoteForGameEndPoint(voteGameID));
+        controller = createController();
+        gameList.voteForGame(game, null);
+        $httpBackend.flush();
+
+        expect(gameList.setVotedForDisplay).toHaveBeenCalled();
     });
 
 });

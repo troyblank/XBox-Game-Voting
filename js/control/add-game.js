@@ -75,7 +75,7 @@ var addGame = {
     submitForm: function() {
         var title = addGame.$scope.addGameData ? addGame.$scope.addGameData.title : null;
         var titleCheck = addGame.isTitleGood(title);
-        if (titleCheck.status) {
+        if (titleCheck.status && user.canVoteOrSuggest) {
             addGame.addGame(title);
         } else {
             addGame.showError(titleCheck.message);

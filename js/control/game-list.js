@@ -30,7 +30,31 @@ var gameList = {
 
     addListeners: function() {
         gameList.$scope.$on('gameAdded', gameList.refreshDisplay);
+        gameList.$scope.onClick = gameList.onClickEvent;
         user.eventDispatcher.addEventListener(user.ON_USER_STATE_CHANGE, gameList.toggleVoteDisplay);
+    },
+
+    //---------------------------------------------------------------------------------------------
+    // VOTING
+    //---------------------------------------------------------------------------------------------
+    onClickEvent: function(e, game) {
+        if (user.canVoteOrSuggest) {
+            gameList.voteForGame(game, e.target);
+        }
+    },
+
+    voteForGame: function(game, target) {
+        gameList.$http.jsonp(DataUtil.getVoteForGameEndPoint(game.id)).success(function(data, status) {
+            gameList.setVotedForDisplay(game, target);
+            user.setVoteOrSuggest(false);
+        }).error(function(data, status) {
+            gameList.showListError();
+        });
+    },
+
+    setVotedForDisplay: function(game, target) {
+        $(target).addClass('votedFor');
+        game.votes++;
     },
 
     //---------------------------------------------------------------------------------------------

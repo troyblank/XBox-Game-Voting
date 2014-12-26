@@ -21,7 +21,7 @@ describe('Add Game', function() {
         //Set up the mock http service responses
         $httpBackend = $injector.get('$httpBackend');
 
-        var authRequestHandler = $httpBackend.when('JSONP', DataUtil.getAddGameEndPoint(title)).respond(data);
+        $httpBackend.when('JSONP', DataUtil.getAddGameEndPoint(title)).respond(data);
 
         createController = function() {
             return $controller(addGame.intialize, {
