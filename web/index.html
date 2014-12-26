@@ -25,8 +25,8 @@
         <h1>Game Voting</h1><h4>with The Nerdery</h4>
     </header>
     <section data-ng-controller="notification-area">
-        <div class="notification">
-            <span class="left">Today is a new week day you can vote or suggest a game one time.</span>
+        <div class="notification" data-ng-show="leftMessage">
+            <span class="left">{{ leftMessage }}</span>
             <span class="right">Megan Man was last acquired.</span>
         </div>
     </section>

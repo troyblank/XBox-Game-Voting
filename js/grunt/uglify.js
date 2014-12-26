@@ -8,6 +8,7 @@ var base = [
 var voteApp = [
     'js/util/DataUtil.js',
     'js/model/timeTracker.js',
+    'js/model/user.js',
     'js/util/AngularApps.js',
     'js/view/templates.js',
     'js/control/baseUI.js',

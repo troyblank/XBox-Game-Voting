@@ -5,14 +5,14 @@
 // this app uses the user clock which can be manipulated; should re-factor to backend logic.
 //-------------------------------------------------------------------------------------------------
 
-var TimeTracker = {
+var timeTracker = {
 
     today: null,
     isWeekDay: null,
 
     initialize: function() {
-        TimeTracker.today = TimeTracker.getDayWithoutTime(new Date());
-        TimeTracker.isWeekDay = TimeTracker.isWeekDay(TimeTracker.today);
+        timeTracker.today = timeTracker.getDayWithoutTime(new Date());
+        timeTracker.isWeekDay = timeTracker.determineIsWeekDay(timeTracker.today);
     },
 
     getDayWithoutTime: function(today) {
@@ -20,7 +20,7 @@ var TimeTracker = {
         return new Date(today.getFullYear(), today.getMonth(), today.getDate());
     },
 
-    isWeekDay: function(today) {
+    determineIsWeekDay: function(today) {
         if (today.getDay() == 6 || today.getDay() == 0) {
             return false;
         }
@@ -28,4 +28,4 @@ var TimeTracker = {
     }
 }
 
-$(document).ready(TimeTracker.initialize);
+timeTracker.initialize();
