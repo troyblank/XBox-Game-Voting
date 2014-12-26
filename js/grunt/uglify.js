@@ -2,11 +2,12 @@
 var base = [
     'js/lib/angular.js',
     'js/lib/jquery-1.11.1.js',
-    'js/util/BaseUtil.js',
-    'js/util/DataUtil.js'
+    'js/util/BaseUtil.js'
 ]
 
 var voteApp = [
+    'js/util/DataUtil.js',
+    'js/model/timeTracker.js',
     'js/util/AngularApps.js',
     'js/view/templates.js',
     'js/control/baseUI.js',

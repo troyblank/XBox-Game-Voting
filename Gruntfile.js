@@ -105,7 +105,7 @@ module.exports = function(grunt) {
                 src: ['js/util/*.js', 'js/control/*.js'],
                 options: {
                     vendor: ['js/lib/**/*.js', 'js/util/**/*.js'],
-                    specs: ['js/spec/*.js', 'js/spec/util/*.js', 'js/spec/control/*.js'],
+                    specs: ['js/spec/*.js', 'js/spec/util/*.js', 'js/spec/control/*.js', 'js/model/*.js'],
                     helpers: ['js/spec/lib/*.js', 'js/spec/helpers/*.js']
                 }
             }
