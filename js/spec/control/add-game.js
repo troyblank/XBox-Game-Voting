@@ -7,6 +7,10 @@ describe('Add Game', function() {
     var data = true;
     var title = 'Mega Man';
 
+    beforeEach(function() {
+        setFixtures('<section class="add-game"><form><input type="text"><button type="submit">Submit</button></form></section>');
+    })
+
     beforeEach(module("game-voter"));
 
     beforeEach(inject(function($injector) {
@@ -58,6 +62,19 @@ describe('Add Game', function() {
         expect(addGame.isTitleUsed('Mega Man')).toBe(true);
         expect(addGame.isTitleUsed('Final Fantasy')).toBe(true);
         expect(addGame.isTitleUsed('Bubble Bobble')).toBe(false);
+    });
+
+    //---------------------------------------------------------------------------------------------
+    it('should be able to disable form based on user vote ability.', function() {
+        user.canVoteOrSuggest = false;
+        addGame.updateStage();
+        expect($('.add-game input')).toHaveAttr('disabled');
+        expect($('.add-game button')).toHaveAttr('disabled');
+
+        user.canVoteOrSuggest = true;
+        addGame.updateStage();
+        expect($('.add-game input')).not.toHaveAttr('disabled');
+        expect($('.add-game button')).not.toHaveAttr('disabled');
     });
 
 });

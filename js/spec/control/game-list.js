@@ -18,6 +18,10 @@ describe('Game List', function() {
         "votes": 5
     }];
 
+    beforeEach(function() {
+        setFixtures('<section class="want-games"></section>');
+    })
+
     beforeEach(module("game-voter"));
 
     beforeEach(inject(function($injector) {
@@ -81,6 +85,18 @@ describe('Game List', function() {
         $rootScope.$broadcast('gameAdded');
 
         expect(gameList.refreshDisplay).toHaveBeenCalled();
+    });
+
+    //---------------------------------------------------------------------------------------------
+    it('should be able to tag active state.', function() {
+        user.canVoteOrSuggest = true;
+        gameList.toggleVoteDisplay();
+        expect($('.want-games')).toHaveClass('active');
+
+        user.canVoteOrSuggest = false;
+        gameList.toggleVoteDisplay();
+        expect($('.want-games')).not.toHaveClass('active');
+
     });
 
 });

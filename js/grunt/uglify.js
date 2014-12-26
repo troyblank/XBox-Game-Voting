@@ -2,7 +2,8 @@
 var base = [
     'js/lib/angular.js',
     'js/lib/jquery-1.11.1.js',
-    'js/util/BaseUtil.js'
+    'js/util/BaseUtil.js',
+    'js/util/EventDispatcher.js'
 ]
 
 var voteApp = [

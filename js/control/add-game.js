@@ -7,6 +7,7 @@
 // util/AngularApps
 // util/BaseUtil
 // util/DataUtil
+// model/user
 // control/gameList
 //-------------------------------------------------------------------------------------------------
 
@@ -26,12 +27,43 @@ var addGame = {
         addGame.$http = $http;
 
         addGame.$scope.submitForm = addGame.submitForm;
-        addGame.enableForm();
+
+        addGame.addEventListeners();
+        addGame.updateStage();
+    },
+
+    addEventListeners: function() {
+        user.eventDispatcher.addEventListener(user.ON_USER_STATE_CHANGE, addGame.updateStage);
     },
 
     //---------------------------------------------------------------------------------------------
     // DISPLAY
     //---------------------------------------------------------------------------------------------
+    updateStage: function() {
+        if (user.canVoteOrSuggest) {
+            addGame.enableForm();
+        } else {
+            addGame.disableForm();
+        }
+    },
+
+    enableForm: function() {
+        $('.add-game input').removeAttr('disabled');
+        $('.add-game button').removeAttr('disabled');
+    },
+
+    disableForm: function() {
+        $('.add-game input').attr('disabled', 'true');
+        $('.add-game button').attr('disabled', 'true');
+    },
+
+    showSuccess: function() {
+        addGame.$scope.error = false;
+        addGame.$scope.success = true;
+        addGame.$scope.successMessage = addGame.SUCCESS_MESSAGE;
+        addGame.$rootScope.$broadcast('gameAdded');
+    },
+
     showError: function(message) {
         addGame.$scope.error = true;
         addGame.$scope.errorMessage = message;
@@ -72,29 +104,12 @@ var addGame = {
         return gameList.currentTitles.indexOf(title.toLowerCase()) >= 0;
     },
 
-    enableForm: function() {
-        $('.add-game input').removeAttr('disabled');
-        $('.add-game button').removeAttr('disabled');
-    },
-
-    disableForm: function() {
-        $('.add-game input').attr('disabled', 'true');
-        $('.add-game button').attr('disabled', 'true');
-    },
-
-    showSuccess: function() {
-        addGame.$scope.error = false;
-        addGame.$scope.success = true;
-        addGame.$scope.successMessage = addGame.SUCCESS_MESSAGE;
-        addGame.$rootScope.$broadcast('gameAdded');
-    },
-
     //---------------------------------------------------------------------------------------------
     // DATA
     //---------------------------------------------------------------------------------------------
     addGame: function(title) {
         addGame.$http.jsonp(DataUtil.getAddGameEndPoint(title)).success(function(data, status) {
-            addGame.disableForm();
+            user.setVoteOrSuggest(false);
             addGame.showSuccess();
         }).error(function(data, status) {
             addGame.showError(addGame.SERVICE_ERROR_MESSAGE);

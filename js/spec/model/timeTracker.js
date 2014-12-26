@@ -16,14 +16,14 @@ describe('Time Tracker', function() {
         sat.setMonth(7);
         sat.setDate(25);
 
-        expect(TimeTracker.isWeekDay(tue)).toBe(true);
-        expect(TimeTracker.isWeekDay(sat)).toBe(false);
+        expect(timeTracker.determineIsWeekDay(tue)).toBe(true);
+        expect(timeTracker.determineIsWeekDay(sat)).toBe(false);
     });
 
-    //---------------------------------------------------------------------------------------------
+    // //---------------------------------------------------------------------------------------------
     it('should get the day without detail time information.', function() {
         var today = new Date();
 
-        expect(TimeTracker.getDayWithoutTime(today).getMilliseconds()).toBe(0);
+        expect(timeTracker.getDayWithoutTime(today).getMilliseconds()).toBe(0);
     });
 });

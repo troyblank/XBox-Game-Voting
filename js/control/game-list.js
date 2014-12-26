@@ -24,11 +24,13 @@ var gameList = {
         gameList.$http = $http;
 
         gameList.getGameData();
+        gameList.toggleVoteDisplay();
         gameList.addListeners();
     },
 
     addListeners: function() {
         gameList.$scope.$on('gameAdded', gameList.refreshDisplay);
+        user.eventDispatcher.addEventListener(user.ON_USER_STATE_CHANGE, gameList.toggleVoteDisplay);
     },
 
     //---------------------------------------------------------------------------------------------
@@ -37,6 +39,14 @@ var gameList = {
     showListError: function() {
         gameList.$scope.error = true;
         gameList.$scope.errorMessage = gameList.LIST_ERROR_MESSAGE
+    },
+
+    toggleVoteDisplay: function() {
+        if (user.canVoteOrSuggest) {
+            $('.want-games').addClass('active');
+        } else {
+            $('.want-games').removeClass('active');
+        }
     },
 
     refreshDisplay: function() {

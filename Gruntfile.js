@@ -102,10 +102,10 @@ module.exports = function(grunt) {
         },
         jasmine: {
             controls: {
-                src: ['js/util/*.js', 'js/control/*.js'],
+                src: ['js/util/*.js', 'js/model/*.js', 'js/control/*.js'],
                 options: {
                     vendor: ['js/lib/**/*.js', 'js/util/**/*.js'],
-                    specs: ['js/spec/*.js', 'js/spec/util/*.js', 'js/model/*.js', 'js/spec/control/*.js'],
+                    specs: ['js/spec/*.js', 'js/spec/util/*.js', 'js/spec/model/*.js', 'js/spec/control/*.js'],
                     helpers: ['js/spec/lib/*.js', 'js/spec/helpers/*.js']
                 }
             }
