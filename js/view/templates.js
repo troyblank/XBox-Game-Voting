@@ -33,6 +33,21 @@ angular.module('game-voter').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('templates/navigation.html',
+    "<ul>\r" +
+    "\n" +
+    "    <li class=\"active\">Vote For Games</li>\r" +
+    "\n" +
+    "    <li>Suggest A Game</li>\r" +
+    "\n" +
+    "    <li>View Owned Games</li>\r" +
+    "\n" +
+    "    <li>Set Owned Games</li>\r" +
+    "\n" +
+    "</ul>"
+  );
+
+
   $templateCache.put('templates/notificationArea.html',
     "<div class=\"notification\" data-ng-show=\"leftMessage\" >\r" +
     "\n" +
