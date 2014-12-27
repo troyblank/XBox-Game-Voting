@@ -15,7 +15,6 @@ describe('Add Game', function() {
 
     beforeEach(inject(function($injector) {
         var $rootScope = $injector.get('$rootScope');
-        var $compile = $injector.get('$compile');
         var $controller = $injector.get('$controller');
 
         //Set up the mock http service responses

@@ -48,13 +48,13 @@ angular.module('game-voter').run(['$templateCache', function($templateCache) {
   $templateCache.put('templates/navigation.html',
     "<ul>\r" +
     "\n" +
-    "    <li class=\"active\"><a href=\"#/\">Vote For Games</a></li>\r" +
+    "    <li data-ng-class=\"{active:isActive('/')}\"><a href=\"#/\">Vote For Games</a></li>\r" +
     "\n" +
-    "    <li><a href=\"#/suggest\">Suggest A Game</a></li>\r" +
+    "    <li data-ng-class=\"{active:isActive('/suggest')}\"><a href=\"#/suggest\">Suggest A Game</a></li>\r" +
     "\n" +
-    "    <li><a href=\"#/owned\">View Owned Games</a></li>\r" +
+    "    <li data-ng-class=\"{active:isActive('/owned')}\"><a href=\"#/owned\">View Owned Games</a></li>\r" +
     "\n" +
-    "    <li>Set Owned Games</li>\r" +
+    "    <li data-ng-class=\"{active:isActive('/set')}\">Set Owned Games</li>\r" +
     "\n" +
     "</ul>"
   );
