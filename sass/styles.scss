@@ -63,6 +63,14 @@ $purple: #9a8f97;
 .left { float: left; }
 .right { float: right; }
 
+.preloader {
+    width: 80px;
+    height: 80px;
+    display: block;
+    margin: 50px auto;
+    @extend .icon-preloader;
+}
+
 body {
     padding: 20px;
     @extend %volkhov;

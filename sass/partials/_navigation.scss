@@ -5,12 +5,10 @@ nav{
     ul{
         @extend %clearfix;
         li {
-            padding: 10px 20px;
+            ;
             display: inline-block;
             float: left;
             list-style: none;
-            cursor:pointer;
-            color: $white;
             background: $purple;
             border-right: 1px solid $dark-gray;
             @extend %unica;
@@ -20,6 +18,13 @@ nav{
                 float:none;
                 border-right: 0;
                 border-bottom: 1px solid $dark-gray;
+            }
+
+            a {
+                display: block;
+                padding: 10px 20px;
+                cursor:pointer;
+                color: $white;
             }
 
             &.active {

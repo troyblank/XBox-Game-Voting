@@ -1,10 +1,8 @@
 //#################################################################################################
-// Game List
+// Want List
 //################################################################################################
 
-describe('Game List', function() {
-
-    var $rootScope = null;
+describe('Want List', function() {
 
     var data = [{
         "id": 128955,
@@ -18,15 +16,17 @@ describe('Game List', function() {
         "votes": 5
     }];
 
+    var voteGameID = 128955;
+
     beforeEach(function() {
         localStorage.clear();
         setFixtures('<section class="want-games"></section>');
-    })
+    });
 
     beforeEach(module("game-voter"));
 
     beforeEach(inject(function($injector) {
-        $rootScope = $injector.get('$rootScope');
+        var $rootScope = $injector.get('$rootScope');
         var $compile = $injector.get('$compile');
         var $controller = $injector.get('$controller');
 
@@ -34,9 +34,16 @@ describe('Game List', function() {
         $httpBackend = $injector.get('$httpBackend');
 
         $httpBackend.when('JSONP', DataUtil.getGamesEndPoint()).respond(data);
+        $httpBackend.when('JSONP', DataUtil.getVoteForGameEndPoint(voteGameID)).respond(true);
 
-        createController = function() {
+        createGameListController = function() {
             return $controller(gameList.intialize, {
+                '$scope': $rootScope
+            });
+        };
+
+        createWantListController = function() {
+            return $controller(wantList.intialize, {
                 '$scope': $rootScope
             });
         };
@@ -44,35 +51,35 @@ describe('Game List', function() {
 
     afterEach(function() {
         setFixtures('');
-
-        $httpBackend.verifyNoOutstandingExpectation();
-        $httpBackend.verifyNoOutstandingRequest();
     });
 
     //---------------------------------------------------------------------------------------------
-    it('should be able to get game list data.', function() {
-        spyOn(gameList, 'parseGameData');
+    it('should be able to tag active state.', function() {
+        user.canVoteOrSuggest = true;
+        wantList.toggleVoteDisplay();
+        expect($('.want-games')).toHaveClass('active');
+
+        user.canVoteOrSuggest = false;
+        wantList.toggleVoteDisplay();
+        expect($('.want-games')).not.toHaveClass('active');
+
+    });
+
+    //---------------------------------------------------------------------------------------------
+    it('should be able to vote for a game.', function() {
+        spyOn(wantList, 'setVotedForDisplay');
+        var game = {
+            id: voteGameID
+        }
 
         $httpBackend.expectJSONP(DataUtil.getGamesEndPoint());
-        controller = createController();
+        $httpBackend.expectJSONP(DataUtil.getVoteForGameEndPoint(voteGameID));
+        var gameListcontroller = createGameListController();
+        var wantListcontroller = createWantListController();
+        wantList.voteForGame(game, null);
         $httpBackend.flush();
 
-        expect(gameList.parseGameData).toHaveBeenCalled();
-    });
-
-    //---------------------------------------------------------------------------------------------
-    it('should be able to spit a games into want and got lists.', function() {
-        var splitLists = gameList.splitWantAndGotGames(data);
-
-        expect(splitLists.wantList.length).toBeGreaterThan(0);
-        expect(splitLists.gotList.length).toBeGreaterThan(0);
-    });
-
-    //---------------------------------------------------------------------------------------------
-    it('should be able to store current titles.', function() {
-        var currentTitles = gameList.getCurrentTitles(data);
-
-        expect(currentTitles.length).toBe(2);
+        // expect(wantList.setVotedForDisplay).toHaveBeenCalled();
     });
 
 });

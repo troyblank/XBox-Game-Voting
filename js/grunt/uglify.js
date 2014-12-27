@@ -1,22 +1,24 @@
 //-------------------------------------------------------------------------------------------------
 var base = [
     'js/lib/angular.js',
+    'js/lib/angular-route.js',
     'js/lib/jquery-1.11.1.js',
     'js/util/BaseUtil.js',
     'js/util/EventDispatcher.js'
 ]
 
 var voteApp = [
+    'js/app.js',
     'js/util/DataUtil.js',
     'js/model/timeTracker.js',
     'js/model/user.js',
-    'js/util/AngularApps.js',
     'js/view/templates.js',
     'js/control/baseUI.js',
-    'js/control/navigation.js',
     'js/control/notification-area.js',
     'js/control/game-list.js',
-    'js/control/add-game.js'
+    'js/control/want-list.js',
+    'js/control/add-game.js',
+    'js/control/got-list.js'
 ]
 
 voteApp = base.concat(voteApp);

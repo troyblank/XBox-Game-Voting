@@ -24,14 +24,16 @@
         <div class="icon-logo_xbox_one"></div>
         <h1>Game Voting</h1><h4>with The Nerdery</h4>
     </header>
-    <nav data-ng-controller="navigation" data-ng-include="'templates/navigation.html'"></nav>
+    <nav data-ng-include="'templates/navigation.html'"></nav>
     <section data-ng-controller="notification-area" data-ng-include="'templates/notificationArea.html'"></section>
-    <div data-ng-controller="game-list">
+    <section data-ng-controller="game-list">
         <div class="error" data-ng-show="error">{{ errorMessage }}</div>
-        <section class="want-games" data-ng-show="wantGames" data-ng-include="'templates/wantGames.html'"></section>
-        <section class="add-game" data-ng-controller="add-game" data-ng-show="gamesDisplayed" data-ng-include="'templates/addGame.html'"></section>
+        <div data-ng-view></div>
+    </section>
+<!--     <div data-ng-controller="game-list">
+        
         <section class="got-games" data-ng-show="gotGames" data-ng-include="'templates/gotGames.html'"></section>
-    </div>
+    </div> -->
 
     <script src="static/scripts/base.min.js"></script>
 </body>

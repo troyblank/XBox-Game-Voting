@@ -1,1 +1,0 @@
-var GameVoter = angular.module('game-voter', []);

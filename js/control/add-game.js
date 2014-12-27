@@ -4,7 +4,7 @@
 // this controls the users ability to add a game via a form
 //
 // USES:
-// util/AngularApps
+// app
 // util/BaseUtil
 // util/DataUtil
 // model/user
@@ -13,7 +13,6 @@
 
 var addGame = {
     $scope: null,
-    $rootScope: null,
     $http: null,
 
     SUCCESS_MESSAGE: 'Your suggestion was added to the voting list.',
@@ -21,9 +20,8 @@ var addGame = {
     TITLE_USED_ERROR_MESSAGE: 'Hey! that Game has already been accounted for.',
     SERVICE_ERROR_MESSAGE: 'Sorry Charlie, unfortunately something went horribly wrong, try again later gater.',
 
-    intialize: function($scope, $rootScope, $http) {
+    intialize: function($scope, $http) {
         addGame.$scope = $scope;
-        addGame.$rootScope = $rootScope;
         addGame.$http = $http;
 
         addGame.$scope.submitForm = addGame.submitForm;
@@ -61,7 +59,6 @@ var addGame = {
         addGame.$scope.error = false;
         addGame.$scope.success = true;
         addGame.$scope.successMessage = addGame.SUCCESS_MESSAGE;
-        addGame.$rootScope.$broadcast('gameAdded');
     },
 
     showError: function(message) {
@@ -77,6 +74,7 @@ var addGame = {
         var titleCheck = addGame.isTitleGood(title);
         if (titleCheck.status && user.canVoteOrSuggest) {
             addGame.addGame(title);
+            gameList.refreshData();
         } else {
             addGame.showError(titleCheck.message);
         }
@@ -117,4 +115,4 @@ var addGame = {
     }
 }
 
-GameVoter.controller('add-game', ['$scope', '$rootScope', '$http', addGame.intialize]);
+GameVoter.controller('add-game', ['$scope', '$http', addGame.intialize]);

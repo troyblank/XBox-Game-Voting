@@ -2,45 +2,57 @@ angular.module('game-voter').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('templates/addGame.html',
-    "<div class=\"game\">\r" +
+    "<section class=\"add-game\">\r" +
     "\n" +
-    "    <form data-ng-submit=\"submitForm()\">\r" +
+    "    <h2>Suggest a Game</h2>\r" +
     "\n" +
-    "        <div class=\"success\" data-ng-show=\"success\" >{{ successMessage }}</div>\r" +
+    "    <div class=\"game\">\r" +
     "\n" +
-    "        <div class=\"error\" data-ng-show=\"error\">{{ errorMessage }}</div>\r" +
+    "        <form data-ng-submit=\"submitForm()\">\r" +
     "\n" +
-    "        <p>Suggest a game.</p>\r" +
+    "            <div class=\"success\" data-ng-show=\"success\" >{{ successMessage }}</div>\r" +
     "\n" +
-    "        <input type=\"text\" name=\"title\" placeholder=\"Title\" data-ng-model=\"addGameData.title\" />\r" +
+    "            <div class=\"error\" data-ng-show=\"error\">{{ errorMessage }}</div>\r" +
     "\n" +
-    "        <button type=\"submit\">Submit</button>\r" +
+    "            <p>Suggest a game.</p>\r" +
     "\n" +
-    "    </form>\r" +
+    "            <input type=\"text\" name=\"title\" placeholder=\"Title\" data-ng-model=\"addGameData.title\" />\r" +
     "\n" +
-    "</div>"
+    "            <button type=\"submit\">Submit</button>\r" +
+    "\n" +
+    "        </form>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</section>"
   );
 
 
   $templateCache.put('templates/gotGames.html',
-    "<h2>Got Games</h2>\r" +
+    "<section class=\"got-games\">\r" +
     "\n" +
-    "<div data-ng-repeat=\"game in gotGames | orderBy:'title'\" class=\"game\" >\r" +
+    "    <h2>Got Games</h2>\r" +
     "\n" +
-    "    <h3>{{ game.title }}</h3>\r" +
+    "    <img class=\"preloader\" src=\"static/images/svg/preloader.svg\" alt=\"loading\" data-ng-show=\"!dataRecieved\" />\r" +
     "\n" +
-    "</div>"
+    "    <div class=\"game\" data-ng-repeat=\"game in gotGames | orderBy:'title'\"  >\r" +
+    "\n" +
+    "        <h3>{{ game.title }}</h3>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</section>"
   );
 
 
   $templateCache.put('templates/navigation.html',
     "<ul>\r" +
     "\n" +
-    "    <li class=\"active\">Vote For Games</li>\r" +
+    "    <li class=\"active\"><a href=\"#/\">Vote For Games</a></li>\r" +
     "\n" +
-    "    <li>Suggest A Game</li>\r" +
+    "    <li><a href=\"#/suggest\">Suggest A Game</a></li>\r" +
     "\n" +
-    "    <li>View Owned Games</li>\r" +
+    "    <li><a href=\"#/owned\">View Owned Games</a></li>\r" +
     "\n" +
     "    <li>Set Owned Games</li>\r" +
     "\n" +
@@ -60,17 +72,23 @@ angular.module('game-voter').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('templates/wantGames.html',
-    "<h2>Wanted Games</h2>\r" +
+    "<section class=\"want-games\">\r" +
     "\n" +
-    "<div class=\"game\" data-ng-repeat=\"game in wantGames | orderBy:'votes':true\"  data-ng-click=\"onClick($event, game)\">\r" +
+    "    <h2>Wanted Games</h2>\r" +
     "\n" +
-    "    <h3>{{ game.title }}</h3>\r" +
+    "    <img class=\"preloader\" src=\"static/images/svg/preloader.svg\" alt=\"loading\" data-ng-show=\"!dataRecieved\" />\r" +
     "\n" +
-    "    <span>(Votes: {{ game.votes }})</span>\r" +
+    "    <div class=\"game\" data-ng-repeat=\"game in wantGames | orderBy:'votes':true\"  data-ng-click=\"onClick($event, game)\">\r" +
     "\n" +
-    "    <button>Vote</button>\r" +
+    "        <h3>{{ game.title }}</h3>\r" +
     "\n" +
-    "</div>"
+    "        <span>(Votes: {{ game.votes }})</span>\r" +
+    "\n" +
+    "        <button>Vote</button>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</section>"
   );
 
 }]);

@@ -1,60 +1,34 @@
 //-------------------------------------------------------------------------------------------------
 // gameList
 //
-// this controls the displaying of game lists
+// this controls the displaying of game lists, because the data for want and data list are received
+// in one endpoint this is a parent of the two lists that delegates data responsibility.
 //
 // USES:
-// util/AngularApps
+// app
 // util/DataUtil
 //-------------------------------------------------------------------------------------------------
 
 var gameList = {
 
     $scope: null,
+    $rootScope: null,
     $http: null,
 
+    wantGames: null,
+    gotGames: null,
     currentTitles: [],
 
     WANT_STATUS: 'wantit',
 
     LIST_ERROR_MESSAGE: 'Sorry Charlie, unfortunately something went horribly wrong, try again later gater.',
 
-    intialize: function($scope, $http) {
+    intialize: function($scope, $rootScope, $http) {
         gameList.$scope = $scope;
+        gameList.$rootScope = $rootScope;
         gameList.$http = $http;
 
         gameList.getGameData();
-        gameList.toggleVoteDisplay();
-        gameList.addListeners();
-    },
-
-    addListeners: function() {
-        gameList.$scope.$on('gameAdded', gameList.refreshDisplay);
-        gameList.$scope.onClick = gameList.onClickEvent;
-        user.eventDispatcher.addEventListener(user.ON_USER_STATE_CHANGE, gameList.toggleVoteDisplay);
-    },
-
-    //---------------------------------------------------------------------------------------------
-    // VOTING
-    //---------------------------------------------------------------------------------------------
-    onClickEvent: function(e, game) {
-        if (user.canVoteOrSuggest) {
-            gameList.voteForGame(game, e.target);
-        }
-    },
-
-    voteForGame: function(game, target) {
-        gameList.$http.jsonp(DataUtil.getVoteForGameEndPoint(game.id)).success(function(data, status) {
-            gameList.setVotedForDisplay(game, target);
-            user.setVoteOrSuggest(false);
-        }).error(function(data, status) {
-            gameList.showListError();
-        });
-    },
-
-    setVotedForDisplay: function(game, target) {
-        $(target).addClass('votedFor');
-        game.votes++;
     },
 
     //---------------------------------------------------------------------------------------------
@@ -65,15 +39,8 @@ var gameList = {
         gameList.$scope.errorMessage = gameList.LIST_ERROR_MESSAGE
     },
 
-    toggleVoteDisplay: function() {
-        if (user.canVoteOrSuggest) {
-            $('.want-games').addClass('active');
-        } else {
-            $('.want-games').removeClass('active');
-        }
-    },
-
-    refreshDisplay: function() {
+    refreshData: function() {
+        gameList.$rootScope.dataRecieved = false;
         gameList.getGameData();
     },
 
@@ -97,13 +64,14 @@ var gameList = {
         var gameLists = gameList.splitWantAndGotGames(data);
 
         if (gameLists.wantList.length > 0) {
-            gameList.$scope.wantGames = gameLists.wantList;
+            gameList.wantGames = gameLists.wantList;
         }
         if (gameLists.gotList.length > 0) {
-            gameList.$scope.gotGames = gameLists.gotList;
+            gameList.gotGames = gameLists.gotList;
         }
 
-        gameList.$scope.gamesDisplayed = true;
+        gameList.$rootScope.dataRecieved = true;
+        gameList.$rootScope.$broadcast('dataRecieved');
     },
 
     getCurrentTitles: function(data) {
@@ -134,4 +102,4 @@ var gameList = {
     }
 }
 
-GameVoter.controller('game-list', ['$scope', '$http', gameList.intialize]);
+GameVoter.controller('game-list', ['$scope', '$rootScope', '$http', gameList.intialize]);
