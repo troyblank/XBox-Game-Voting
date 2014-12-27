@@ -61,6 +61,9 @@ var wantList = {
         //dataRecieved
         if (wantList.$scope.dataRecieved) {
             wantList.$scope.wantGames = gameList.wantGames;
+            if (gameList.wantGames === null) {
+                wantList.$scope.zeroResults = true;
+            }
         }
     },
 

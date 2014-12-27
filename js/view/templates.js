@@ -35,6 +35,12 @@ angular.module('game-voter').run(['$templateCache', function($templateCache) {
     "\n" +
     "    <img class=\"preloader\" src=\"static/images/svg/preloader.svg\" alt=\"loading\" data-ng-show=\"!dataRecieved\" />\r" +
     "\n" +
+    "    <div class=\"notification\" ng-show=\"zeroResults\">\r" +
+    "\n" +
+    "        <span>There is currently no games to vote on, please suggest a game.</span>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
     "    <div class=\"game\" data-ng-repeat=\"game in gotGames | orderBy:'title'\"  >\r" +
     "\n" +
     "        <h3>{{ game.title }}</h3>\r" +
@@ -77,6 +83,12 @@ angular.module('game-voter').run(['$templateCache', function($templateCache) {
     "    <h2>Wanted Games</h2>\r" +
     "\n" +
     "    <img class=\"preloader\" src=\"static/images/svg/preloader.svg\" alt=\"loading\" data-ng-show=\"!dataRecieved\" />\r" +
+    "\n" +
+    "    <div class=\"notification\" ng-show=\"zeroResults\">\r" +
+    "\n" +
+    "        <span>There is currently no games owned.</span>\r" +
+    "\n" +
+    "    </div>\r" +
     "\n" +
     "    <div class=\"game\" data-ng-repeat=\"game in wantGames | orderBy:'votes':true\"  data-ng-click=\"onClick($event, game)\">\r" +
     "\n" +

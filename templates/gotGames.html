@@ -1,6 +1,9 @@
 <section class="got-games">
     <h2>Got Games</h2>
     <img class="preloader" src="static/images/svg/preloader.svg" alt="loading" data-ng-show="!dataRecieved" />
+    <div class="notification" ng-show="zeroResults">
+        <span>There is currently no games to vote on, please suggest a game.</span>
+    </div>
     <div class="game" data-ng-repeat="game in gotGames | orderBy:'title'"  >
         <h3>{{ game.title }}</h3>
     </div>

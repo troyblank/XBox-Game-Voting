@@ -35,6 +35,9 @@ var gotList = {
         //dataRecieved
         if (gotList.$scope.dataRecieved) {
             gotList.$scope.gotGames = gameList.gotGames;
+            if (gameList.gotGames == null) {
+                gotList.$scope.zeroResults = true;
+            }
         }
     }
 }
