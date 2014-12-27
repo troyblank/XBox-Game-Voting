@@ -24,33 +24,12 @@
         <div class="icon-logo_xbox_one"></div>
         <h1>Game Voting</h1><h4>with The Nerdery</h4>
     </header>
-    <section data-ng-controller="notification-area">
-        <div class="notification" data-ng-show="leftMessage">
-            <span class="left">{{ leftMessage }}</span>
-            <span class="right">Megan Man was last acquired.</span>
-        </div>
-    </section>
+    <section data-ng-controller="notification-area" data-ng-include="'templates/notificationArea.html'"></section>
     <div data-ng-controller="game-list">
         <div class="error" data-ng-show="error">{{ errorMessage }}</div>
-        <section class="want-games" data-ng-show="wantGames">
-            <h2>Wanted Games</h2>
-            <div class="game" data-ng-repeat="game in wantGames | orderBy:'votes':true" data-ng-include="'templates/wantGame.html'" ng-click="onClick($event, game)"></div>
-        </section>
-        <section class="add-game" data-ng-controller="add-game" data-ng-show="gamesDisplayed">
-            <div class="game">
-                <form data-ng-submit="submitForm()">
-                    <div class="success" data-ng-show="success" >{{ successMessage }}</div>
-                    <div class="error" data-ng-show="error">{{ errorMessage }}</div>
-                    <p>Suggest a game.</p>
-                    <input type="text" name="title" placeholder="Title" data-ng-model="addGameData.title" />
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
-        </section>
-        <section class="got-games" data-ng-show="gotGames">
-            <h2>Got Games</h2>
-            <div data-ng-repeat="game in gotGames | orderBy:'title'" class="game" data-ng-include="'templates/gotGame.html'"></div>
-        </section>
+        <section class="want-games" data-ng-show="wantGames" data-ng-include="'templates/wantGames.html'"></section>
+        <section class="add-game" data-ng-controller="add-game" data-ng-show="gamesDisplayed" data-ng-include="'templates/addGame.html'"></section>
+        <section class="got-games" data-ng-show="gotGames" data-ng-include="'templates/gotGames.html'"></section>
     </div>
 
     <script src="static/scripts/base.min.js"></script>
