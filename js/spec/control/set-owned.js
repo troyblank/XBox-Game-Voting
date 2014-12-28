@@ -88,4 +88,15 @@ describe('Set Owned', function() {
         expect($('div')).toHaveClass('owned');
     });
 
+    //---------------------------------------------------------------------------------------------
+    it('should refresh stale data.', function() {
+        spyOn(gameList, 'refreshData');
+
+        createSetOwnedController();
+        $rootScope.dataStale = true;
+        setOwned.checkToRefreshData();
+
+        expect(gameList.refreshData).toHaveBeenCalled();
+    });
+
 });

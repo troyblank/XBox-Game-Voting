@@ -21,13 +21,19 @@ var setOwned = {
         setOwned.$http = $http;
 
         setOwned.addListeners();
-
+        setOwned.checkToRefreshData();
         setOwned.refreshDisplay();
     },
 
     addListeners: function() {
         setOwned.$scope.$on('dataRecieved', setOwned.refreshDisplay);
         setOwned.$scope.onClick = setOwned.onClickEvent;
+    },
+
+    checkToRefreshData: function() {
+        if (setOwned.$scope.dataStale) {
+            gameList.refreshData();
+        }
     },
 
     //---------------------------------------------------------------------------------------------

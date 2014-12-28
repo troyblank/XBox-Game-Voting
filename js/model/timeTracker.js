@@ -22,7 +22,7 @@ var timeTracker = {
 
     determineIsWeekDay: function(today) {
         if (today.getDay() == 6 || today.getDay() == 0) {
-            return true;
+            return false;
         }
         return true;
     }
