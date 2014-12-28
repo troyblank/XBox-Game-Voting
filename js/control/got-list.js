@@ -20,12 +20,18 @@ var gotList = {
         gotList.$http = $http;
 
         gotList.addListeners();
-
+        gotList.checkToRefreshData();
         gotList.refreshDisplay();
     },
 
     addListeners: function() {
         gotList.$scope.$on('dataRecieved', gotList.refreshDisplay);
+    },
+
+    checkToRefreshData: function() {
+        if (gotList.$scope.dataStale) {
+            gameList.refreshData();
+        }
     },
 
     //---------------------------------------------------------------------------------------------

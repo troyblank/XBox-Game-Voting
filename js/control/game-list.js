@@ -28,6 +28,7 @@ var gameList = {
         gameList.$rootScope = $rootScope;
         gameList.$http = $http;
 
+        gameList.$rootScope.dataStale = false;
         gameList.getGameData();
     },
 
@@ -36,17 +37,22 @@ var gameList = {
     //---------------------------------------------------------------------------------------------
     showListError: function() {
         gameList.$scope.error = true;
-        gameList.$scope.errorMessage = gameList.LIST_ERROR_MESSAGE
+        gameList.$scope.errorMessage = gameList.LIST_ERROR_MESSAGE;
     },
 
     refreshData: function() {
         gameList.$rootScope.dataRecieved = false;
+        gameList.$rootScope.dataStale = false;
         gameList.getGameData();
     },
 
     //---------------------------------------------------------------------------------------------
     // DATA
     //---------------------------------------------------------------------------------------------
+    markDataStale: function() {
+        gameList.$rootScope.dataStale = true;
+    },
+
     getGameData: function() {
         gameList.$http.jsonp(DataUtil.getGamesEndPoint()).success(function(data, status) {
             if (data) {

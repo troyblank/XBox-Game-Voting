@@ -37,7 +37,7 @@ angular.module('game-voter').run(['$templateCache', function($templateCache) {
     "\n" +
     "    <div class=\"notification\" ng-show=\"zeroResults\">\r" +
     "\n" +
-    "        <span>There is currently no games to vote on, please suggest a game.</span>\r" +
+    "        <span>There is currently no games owned.</span>\r" +
     "\n" +
     "    </div>\r" +
     "\n" +
@@ -60,7 +60,7 @@ angular.module('game-voter').run(['$templateCache', function($templateCache) {
     "\n" +
     "    <li data-ng-class=\"{active:isActive('/owned')}\"><a href=\"#/owned\">View Owned Games</a></li>\r" +
     "\n" +
-    "    <li data-ng-class=\"{active:isActive('/set')}\">Set Owned Games</li>\r" +
+    "    <li data-ng-class=\"{active:isActive('/set')}\"><a href=\"#/set\">Set Owned Games</a></li>\r" +
     "\n" +
     "</ul>"
   );
@@ -77,6 +77,33 @@ angular.module('game-voter').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('templates/setOwned.html',
+    "<section class=\"want-games set-to-own\">\r" +
+    "\n" +
+    "    <h2>Set Owned</h2>\r" +
+    "\n" +
+    "    <img class=\"preloader\" src=\"static/images/svg/preloader.svg\" alt=\"loading\" data-ng-show=\"!dataRecieved\" />\r" +
+    "\n" +
+    "    <div class=\"notification\" ng-show=\"zeroResults\">\r" +
+    "\n" +
+    "        <span>There is currently no games to set to owned.</span>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "    <div class=\"game\" data-ng-repeat=\"game in wantGames | orderBy:'votes':true\"  data-ng-click=\"onClick($event, game)\">\r" +
+    "\n" +
+    "        <h3>{{ game.title }}</h3>\r" +
+    "\n" +
+    "        <span>(Votes: {{ game.votes }})</span>\r" +
+    "\n" +
+    "        <button>Set to Owned</button>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</section>"
+  );
+
+
   $templateCache.put('templates/wantGames.html',
     "<section class=\"want-games\">\r" +
     "\n" +
@@ -86,7 +113,7 @@ angular.module('game-voter').run(['$templateCache', function($templateCache) {
     "\n" +
     "    <div class=\"notification\" ng-show=\"zeroResults\">\r" +
     "\n" +
-    "        <span>There is currently no games owned.</span>\r" +
+    "        <span>There is currently no games to vote on, please suggest a game.</span>\r" +
     "\n" +
     "    </div>\r" +
     "\n" +

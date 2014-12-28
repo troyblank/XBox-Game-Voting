@@ -74,7 +74,7 @@ var addGame = {
         var titleCheck = addGame.isTitleGood(title);
         if (titleCheck.status && user.canVoteOrSuggest) {
             addGame.addGame(title);
-            gameList.refreshData();
+            gameList.markDataStale();
         } else {
             addGame.showError(titleCheck.message);
         }

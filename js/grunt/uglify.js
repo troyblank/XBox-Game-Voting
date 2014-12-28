@@ -19,7 +19,8 @@ var voteApp = [
     'js/control/game-list.js',
     'js/control/want-list.js',
     'js/control/add-game.js',
-    'js/control/got-list.js'
+    'js/control/got-list.js',
+    'js/control/set-owned.js'
 ]
 
 voteApp = base.concat(voteApp);

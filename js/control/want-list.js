@@ -14,6 +14,7 @@
 var wantList = {
 
     $scope: null,
+    http: null,
 
     intialize: function($scope, $http) {
         wantList.$scope = $scope;
@@ -21,7 +22,7 @@ var wantList = {
 
         wantList.toggleVoteDisplay();
         wantList.addListeners();
-
+        wantList.checkToRefreshData();
         wantList.refreshDisplay();
     },
 
@@ -29,6 +30,12 @@ var wantList = {
         wantList.$scope.$on('dataRecieved', wantList.refreshDisplay);
         wantList.$scope.onClick = wantList.onClickEvent;
         user.eventDispatcher.addEventListener(user.ON_USER_STATE_CHANGE, wantList.toggleVoteDisplay);
+    },
+
+    checkToRefreshData: function() {
+        if (wantList.$scope.dataStale) {
+            gameList.refreshData();
+        }
     },
 
     //---------------------------------------------------------------------------------------------
@@ -45,7 +52,7 @@ var wantList = {
             wantList.setVotedForDisplay(game, target);
             user.setVoteOrSuggest(false);
         }).error(function(data, status) {
-            wantList.showListError();
+            gameList.showListError();
         });
     },
 

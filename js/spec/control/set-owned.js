@@ -1,8 +1,8 @@
 //#################################################################################################
-// Want List
+// Set Owned
 //################################################################################################
 
-describe('Want List', function() {
+describe('Set Owned', function() {
 
     var $rootScope;
 
@@ -18,11 +18,11 @@ describe('Want List', function() {
         "votes": 5
     }];
 
-    var voteGameID = 128955;
+    var setGameID = 128955;
 
     beforeEach(function() {
         localStorage.clear();
-        setFixtures('<section class="want-games"></section>');
+        setFixtures('<div></div>');
     });
 
     beforeEach(module("game-voter"));
@@ -36,7 +36,7 @@ describe('Want List', function() {
         $httpBackend = $injector.get('$httpBackend');
 
         $httpBackend.when('JSONP', DataUtil.getGamesEndPoint()).respond(data);
-        $httpBackend.when('JSONP', DataUtil.getVoteForGameEndPoint(voteGameID)).respond(true);
+        $httpBackend.when('JSONP', DataUtil.getSetGotItEndPoint(setGameID)).respond(true);
 
         createGameListController = function() {
             return $controller(gameList.intialize, {
@@ -44,8 +44,8 @@ describe('Want List', function() {
             });
         };
 
-        createWantListController = function() {
-            return $controller(wantList.intialize, {
+        createSetOwnedController = function() {
+            return $controller(setOwned.intialize, {
                 '$scope': $rootScope
             });
         };
@@ -56,44 +56,36 @@ describe('Want List', function() {
     });
 
     //---------------------------------------------------------------------------------------------
-    it('should be able to tag active state.', function() {
-        user.canVoteOrSuggest = true;
-        wantList.toggleVoteDisplay();
-        expect($('.want-games')).toHaveClass('active');
+    it('should refresh display on incoming data.', function() {
+        spyOn(setOwned, 'refreshDisplay');
 
-        user.canVoteOrSuggest = false;
-        wantList.toggleVoteDisplay();
-        expect($('.want-games')).not.toHaveClass('active');
+        var setOwnedcontroller = createSetOwnedController();
+        $rootScope.$broadcast('dataRecieved');
 
+        expect(setOwned.refreshDisplay).toHaveBeenCalled();
     });
 
     //---------------------------------------------------------------------------------------------
     it('should be able to vote for a game.', function() {
-        spyOn(wantList, 'setVotedForDisplay');
-        spyOn(user, 'setVoteOrSuggest');
+        spyOn(setOwned, 'setOwnedForDisplay');
         var game = {
-            id: voteGameID
+            id: setGameID
         }
 
         $httpBackend.expectJSONP(DataUtil.getGamesEndPoint());
-        $httpBackend.expectJSONP(DataUtil.getVoteForGameEndPoint(voteGameID));
+        $httpBackend.expectJSONP(DataUtil.getSetGotItEndPoint(setGameID));
         var gameListcontroller = createGameListController();
-        var wantListcontroller = createWantListController();
-        wantList.voteForGame(game, null);
+        var setOwnedcontroller = createSetOwnedController();
+        setOwned.setToOwned(game, null);
         $httpBackend.flush();
 
-        expect(wantList.setVotedForDisplay).toHaveBeenCalled();
-        expect(user.setVoteOrSuggest).toHaveBeenCalled();
+        expect(setOwned.setOwnedForDisplay).toHaveBeenCalled();
     });
 
     //---------------------------------------------------------------------------------------------
-    it('should refresh stale data.', function() {
-        spyOn(gameList, 'refreshData');
-
-        createWantListController();
-        $rootScope.dataStale = true;
-        wantList.checkToRefreshData();
-
-        expect(gameList.refreshData).toHaveBeenCalled();
+    it('should be able to set owned class.', function() {
+        setOwned.setOwnedForDisplay($('div'));
+        expect($('div')).toHaveClass('owned');
     });
+
 });

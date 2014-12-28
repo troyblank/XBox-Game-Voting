@@ -1,12 +1,12 @@
-<section class="want-games">
-    <h2>Wanted Games</h2>
+<section class="want-games set-to-own">
+    <h2>Set Owned</h2>
     <img class="preloader" src="static/images/svg/preloader.svg" alt="loading" data-ng-show="!dataRecieved" />
     <div class="notification" ng-show="zeroResults">
-        <span>There is currently no games to vote on, please suggest a game.</span>
+        <span>There is currently no games to set to owned.</span>
     </div>
     <div class="game" data-ng-repeat="game in wantGames | orderBy:'votes':true"  data-ng-click="onClick($event, game)">
         <h3>{{ game.title }}</h3>
         <span>(Votes: {{ game.votes }})</span>
-        <button>Vote</button>
+        <button>Set to Owned</button>
     </div>
 </section>

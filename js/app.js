@@ -8,6 +8,9 @@ var GameVoter = angular.module('game-voter', ['ngRoute']).config(function($route
     }).when('/owned', {
         templateUrl: 'templates/gotGames.html',
         controller: 'got-list'
+    }).when('/set', {
+        templateUrl: 'templates/setOwned.html',
+        controller: 'set-owned'
     }).otherwise({
         redirectTo: '/'
     });

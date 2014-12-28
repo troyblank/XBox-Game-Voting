@@ -7,6 +7,7 @@ var DataUtil = {
     GET_GAMES_POINT: 'getGames',
     ADD_GAME_POINT: 'addGame',
     ADD_VOTE_POINT: 'addVote',
+    SET_GOT_IT: 'setGotIt',
 
     getQueryParams: function(extraParams) {
         var query = '?apiKey=' + encodeURIComponent(DataUtil.API_KEY) + '&callback=JSON_CALLBACK';
@@ -30,6 +31,12 @@ var DataUtil = {
 
     getVoteForGameEndPoint: function(id) {
         return DataUtil.DATA_BASE_URL + DataUtil.ADD_VOTE_POINT + DataUtil.getQueryParams({
+            'id': id
+        });
+    },
+
+    getSetGotItEndPoint: function(id) {
+        return DataUtil.DATA_BASE_URL + DataUtil.SET_GOT_IT + DataUtil.getQueryParams({
             'id': id
         });
     }
