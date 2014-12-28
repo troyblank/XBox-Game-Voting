@@ -96,7 +96,7 @@ angular.module('game-voter').run(['$templateCache', function($templateCache) {
     "\n" +
     "        <span>(Votes: {{ game.votes }})</span>\r" +
     "\n" +
-    "        <button>Set to Owned</button>\r" +
+    "        <button>Owned</button>\r" +
     "\n" +
     "    </div>\r" +
     "\n" +

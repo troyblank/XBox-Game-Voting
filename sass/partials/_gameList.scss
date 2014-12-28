@@ -44,6 +44,7 @@
     }
 
     button {
+        margin-top: -4px;
         float: right;
         display: none;
     }
@@ -53,7 +54,7 @@
     }
 }
 
-&.active {
+.active, .add-game, .set-to-own {
     .game {
         button {
             display: block;

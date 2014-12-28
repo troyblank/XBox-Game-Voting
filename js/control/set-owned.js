@@ -40,7 +40,7 @@ var setOwned = {
     // VOTING
     //---------------------------------------------------------------------------------------------
     onClickEvent: function(e, game) {
-        setOwned.setToOwned(game, e.target);
+        setOwned.setToOwned(game, e.currentTarget);
     },
 
     setToOwned: function(game, target) {
@@ -54,6 +54,7 @@ var setOwned = {
 
     setOwnedForDisplay: function(target) {
         $(target).addClass('owned');
+        $('button', $(target)).remove();
     },
 
     //---------------------------------------------------------------------------------------------
