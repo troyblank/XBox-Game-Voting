@@ -43,7 +43,7 @@ var wantList = {
     //---------------------------------------------------------------------------------------------
     onClickEvent: function(e, game) {
         if (user.canVoteOrSuggest) {
-            wantList.voteForGame(game, e.target);
+            wantList.voteForGame(game, e.currentTarget);
         }
     },
 

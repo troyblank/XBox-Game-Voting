@@ -25,22 +25,6 @@
         border-bottom: 0;
     }
 
-    &.votedFor {
-        background: #89ca96;
-        &:after {
-            content: "THANK YOU FOR YOUR VOTE!";
-            @extend %hover-button;
-        }
-    }
-
-    &.owned {
-        background: #89ca96;
-        &:after { 
-            content: "GAME SET TO OWNED!" !important;
-            @extend %hover-button;
-        }
-    }
-
     h3 {
         float: left;
         @include breakpoint(MOBILE){
@@ -61,6 +45,19 @@
 
     button {
         float: right;
+        display: none;
+    }
+
+    &.votedFor, &.owned {
+        background: #89ca96;
+    }
+}
+
+&.active {
+    .game {
+        button {
+            display: block;
+        }
     }
 }
 
@@ -91,6 +88,22 @@
 
             button {
                 display: none;
+            }
+
+            &.votedFor {
+                background: #89ca96; // IE 10 fix, do not remove
+                &:after {
+                    content: "THANK YOU FOR YOUR VOTE!";
+                    @extend %hover-button;
+                }
+            }
+
+            &.owned {
+                background: #89ca96; // IE 10 fix, do not remove
+                &:after { 
+                    content: "GAME SET TO OWNED!" !important;
+                    @extend %hover-button;
+                }
             }
         }
     }
