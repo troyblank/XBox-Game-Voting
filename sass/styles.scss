@@ -82,6 +82,10 @@ body {
     }
 }
 
+[data-ng-cloak] {
+  display: none !important;
+}
+
 /* ------ APP PARTIALS ------- */
 @import "partials/header";
 @import "partials/navigation";

@@ -30,7 +30,7 @@
     <nav class="nav" data-ng-controller="navigation" data-ng-include="'templates/navigation.html'"></nav>
     <section data-ng-controller="notification-area" data-ng-include="'templates/notificationArea.html'"></section>
     <section data-ng-controller="game-list">
-        <div class="error" data-ng-show="error">{{ errorMessage }}</div>
+        <div class="error" data-ng-show="error" data-ng-cloak>{{ errorMessage }}</div>
         <div data-ng-view></div>
     </section>
     <script src="static/scripts/base.min.js"></script>
