@@ -69,9 +69,7 @@ angular.module('game-voter').run(['$templateCache', function($templateCache) {
   $templateCache.put('templates/notificationArea.html',
     "<div class=\"notification\" data-ng-show=\"leftMessage\" >\r" +
     "\n" +
-    "    <span class=\"left\">{{ leftMessage }}</span>\r" +
-    "\n" +
-    "    <span class=\"right\">Megan Man was last acquired.</span>\r" +
+    "    <span>{{ leftMessage }}</span>\r" +
     "\n" +
     "</div>"
   );
