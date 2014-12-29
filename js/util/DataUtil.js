@@ -1,5 +1,6 @@
 var DataUtil = {
     //This is a helper literal to be used with all end point calls.
+    //To clear games put this in your browser "http://js.november.sierrabravo.net/challenge/clearGames?apiKey=3c9cc9d5b284b9067f0ce365c34cbf9d"
 
     API_KEY: '3c9cc9d5b284b9067f0ce365c34cbf9d',
 

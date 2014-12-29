@@ -54,7 +54,9 @@ var gameList = {
     },
 
     getGameData: function() {
-        gameList.$http.jsonp(DataUtil.getGamesEndPoint()).success(function(data, status) {
+        gameList.$http.jsonp(DataUtil.getGamesEndPoint(), {
+            cache: true
+        }).success(function(data, status) {
             if (data) {
                 gameList.parseGameData(data);
             } else {
