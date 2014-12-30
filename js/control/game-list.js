@@ -43,7 +43,6 @@ var gameList = {
     refreshData: function() {
         gameList.$rootScope.dataRecieved = false;
         gameList.getGameData();
-        gameList.$rootScope.dataStale = false;
     },
 
     //---------------------------------------------------------------------------------------------
@@ -59,6 +58,7 @@ var gameList = {
             cache: !gameList.$rootScope.dataStale
         }).success(function(data, status) {
             if (data) {
+                gameList.$rootScope.dataStale = false;
                 gameList.parseGameData(data);
             } else {
                 gameList.showListError();
