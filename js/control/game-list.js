@@ -42,8 +42,8 @@ var gameList = {
 
     refreshData: function() {
         gameList.$rootScope.dataRecieved = false;
-        gameList.$rootScope.dataStale = false;
         gameList.getGameData();
+        gameList.$rootScope.dataStale = false;
     },
 
     //---------------------------------------------------------------------------------------------
@@ -54,8 +54,9 @@ var gameList = {
     },
 
     getGameData: function() {
+        console.log(!gameList.$rootScope.dataStale);
         gameList.$http.jsonp(DataUtil.getGamesEndPoint(), {
-            cache: true
+            cache: !gameList.$rootScope.dataStale
         }).success(function(data, status) {
             if (data) {
                 gameList.parseGameData(data);
