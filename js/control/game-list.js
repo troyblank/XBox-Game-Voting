@@ -53,7 +53,6 @@ var gameList = {
     },
 
     getGameData: function() {
-        console.log(!gameList.$rootScope.dataStale);
         gameList.$http.jsonp(DataUtil.getGamesEndPoint(), {
             cache: !gameList.$rootScope.dataStale
         }).success(function(data, status) {
