@@ -1,4 +1,6 @@
-var GameVoter = angular.module('game-voter', ['ngRoute']).config(function($routeProvider, $locationProvider) {
+var GameVoter = angular.module('game-voter', ['ngRoute'])
+
+GameVoter.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
         templateUrl: 'templates/wantGames.html',
         controller: 'want-list'
@@ -16,4 +18,4 @@ var GameVoter = angular.module('game-voter', ['ngRoute']).config(function($route
     });
 
     $locationProvider.html5Mode(false);
-});
+}]);
