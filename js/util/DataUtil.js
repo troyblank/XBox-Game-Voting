@@ -4,7 +4,7 @@ var DataUtil = {
 
     API_KEY: '3c9cc9d5b284b9067f0ce365c34cbf9d',
 
-    DATA_BASE_URL: 'http://js.november.sierrabravo.net/challenge/',
+    DATA_BASE_URL: '//js.november.sierrabravo.net/challenge/',
     GET_GAMES_POINT: 'getGames',
     ADD_GAME_POINT: 'addGame',
     ADD_VOTE_POINT: 'addVote',
