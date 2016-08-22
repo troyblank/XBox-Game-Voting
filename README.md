@@ -1,6 +1,6 @@
 # Xbox Game Voting
 
-This is a static site used to vote on xbox games to purchase on a weekly basis. This is made as an assessment test for [The Nerdery](http://www.nerdery.com/ "The Nerdery") and is not a real site.
+This is a static site used to vote on xbox games to purchase on a weekly basis. This is made as an assessment test for an interview and is not a real site.
 
 ##Dependencies
 * node.js
